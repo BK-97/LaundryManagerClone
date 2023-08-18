@@ -1,7 +1,8 @@
+using UnityEngine;
 public interface IProduct
 {
-    public ProductData GetProductData();
     void Sell();
     void MoveProcess(IProcessor processor);
-    void ProcessEnd();
+    void MoveProcessEnd(IProcessor processor);
+    void MoveNextProcessPlatform();
 }

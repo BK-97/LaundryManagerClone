@@ -5,8 +5,10 @@ using UnityEngine;
 public class SewMachine : MonoBehaviour, ISelectable, IProcessor
 {
     #region Params
+    public EnumTypes.ProcessorTypes ProcessorType;
+    public EnumTypes.ProductTypes ProductionType;
+    public int processTime;
 
-    IProduct currentProduct;
     [SerializeField]
     private bool _isSelected;
     [SerializeField]
@@ -15,14 +17,10 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
     private bool _isEmpty;
 
     private bool onProcess;
-    public Canvas LockCanvas;
+    private float elapsedTime;
 
-    public EnumTypes.ProcessorTypes processorType;
+    public Canvas LockCanvas;
     public Transform productTransform;
-    public int unlockLevel;
-    public int unlockCost;
-    public float processPerSeconds;
-    private float currentNeedProcess;
     #endregion
 
     #region ISelectable
@@ -38,7 +36,6 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
             return;
         Debug.Log("Machine Selected");
         isSelected = true;
-        ProcessStart();
         Deselected();
     }
     public void Deselected()
@@ -63,10 +60,11 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
         get => _isEmpty;
         set { _isEmpty = value; }
     }
-    public void GetProduct(IProduct product)
+    public void GetProduct()
     {
-        currentProduct = product;
-        currentNeedProcess = currentProduct.GetProductData().processNeed;
+        Debug.Log("GetProduct");
+
+        ProcessStart();
     }
     public Transform GetProductPlace()
     {
@@ -74,22 +72,26 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
     }
     public void ProcessStart()
     {
+        Debug.Log("ProcessStart");
+
         onProcess = true;
-        ProcessUpdate();
     }
 
     public void ProcessUpdate()
     {
-        currentNeedProcess -= processPerSeconds * Time.deltaTime;
-        if (currentNeedProcess <= 0)
+        elapsedTime += Time.deltaTime;
+        Debug.Log(elapsedTime);
+
+        if (elapsedTime >= processTime)
+        {
             ProcessEnd();
+        }
     }
 
     public void ProcessEnd()
     {
+        elapsedTime = 0.0f;
         onProcess = false;
-        currentProduct.ProcessEnd();
-        currentProduct = null;
     }
 
     public void ProcessorUnlock()

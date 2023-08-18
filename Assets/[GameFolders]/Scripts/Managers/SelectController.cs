@@ -33,8 +33,6 @@ public class SelectController : MonoBehaviour
         if (processor != null)
             CalculateSelectedProcessor(processor,selected);
 
-
-
     }
     private void CalculateSelectedProcessor(IProcessor processor, ISelectable selectable)
     {
@@ -45,9 +43,8 @@ public class SelectController : MonoBehaviour
         if (selectedProduct == null)
             return;
 
-        processor.GetProduct(selectedProduct.GetComponent<IProduct>());
         selectable.Selected();
-        selectedProduct.GetComponent<IProduct>().MoveProcess(processor);
+        selectedProduct.GetComponentInChildren<IProduct>().MoveProcess(processor);
     }
     private void CalculateSelectedProduct(GameObject selectedObject, ISelectable selectable)
     {
