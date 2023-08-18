@@ -33,7 +33,6 @@ public enum Swipe
 public class InputManager : Singleton<InputManager>
 {
     public Vector3 InputDirection;
-
     private void Update()
     {
 
@@ -78,6 +77,7 @@ public class InputManager : Singleton<InputManager>
         TapInput();
         SwipeInput();
         OnTapHoldInput();
+
     }
 
 
@@ -171,7 +171,6 @@ public class InputManager : Singleton<InputManager>
     }
 
     #endregion
-
     #region TapHoldInput
 
     public UnityEvent OnTapDown = new UnityEvent();
@@ -191,7 +190,6 @@ public class InputManager : Singleton<InputManager>
     }
 
     #endregion
-
     #region Swipe Input
 
     #region Inspector Variables
@@ -303,9 +301,6 @@ public class InputManager : Singleton<InputManager>
     public static bool IsSwipingUpRight() { return IsSwipingDirection(Swipe.UpRight); }
 
     #region Helper Functions
-
-
-
     static bool IsDirection(Vector2 direction, Vector2 cardinalDirection)
     {
         var angle = Instance.useEightDirections ? eightDirAngle : fourDirAngle;
@@ -328,7 +323,6 @@ public class InputManager : Singleton<InputManager>
     #endregion
 
     #endregion
-
     #region DragNDrop
 
     RaycastHit hit;
@@ -350,7 +344,7 @@ public class InputManager : Singleton<InputManager>
     }
 
     #endregion
-
+    #region Touch Input
     static bool GetTouchInput()
     {
         if (Input.touches.Length > 0)
@@ -414,6 +408,8 @@ public class InputManager : Singleton<InputManager>
 
         return false;
     }
+    #endregion
+
 }
 
 public class SwipeEvent : UnityEvent<Swipe, Vector2> { }

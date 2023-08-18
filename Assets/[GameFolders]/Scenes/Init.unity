@@ -139,6 +139,8 @@ GameObject:
   - component: {fileID: 655627705}
   - component: {fileID: 655627710}
   - component: {fileID: 655627711}
+  - component: {fileID: 655627712}
+  - component: {fileID: 655627713}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -301,6 +303,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SourceObjects: []
   DefaultCount: 10
+--- !u!114 &655627712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655627703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69b5246eb8f4645469075ada77b43972, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &655627713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655627703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
 --- !u!1 &983545284
 GameObject:
   m_ObjectHideFlags: 0

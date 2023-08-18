@@ -87,7 +87,7 @@ public class Level
 
 }
 
-[CreateAssetMenu]
+[CreateAssetMenu(fileName = "LevelData", menuName = "Datas/Level Data")]
 public class LevelData : ScriptableObject
 {
     public List<Level> Levels = new List<Level>();
