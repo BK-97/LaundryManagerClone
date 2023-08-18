@@ -132,6 +132,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 655627704}
+  - component: {fileID: 655627709}
+  - component: {fileID: 655627708}
+  - component: {fileID: 655627707}
+  - component: {fileID: 655627706}
+  - component: {fileID: 655627705}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -154,6 +159,116 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &655627705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655627703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1248e1e46a8b3d444a9a83e76463387e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &655627706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655627703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a30e9231db7a081408719e9facb762ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LevelData: {fileID: 11400000, guid: 5a80a472f8e3ee44585c476240c58ea3, type: 2}
+  OnLevelStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnLevelFinish:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &655627707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655627703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3e6faf96512ace4384ee612e0414e72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnSceneStartedLoading:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSceneUnloading:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSceneLoaded:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSceneUnLoaded:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &655627708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655627703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6fc0759e6a4ce5419dcfb0c1d92aee2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InputDirection: {x: 0, y: 0, z: 0}
+  OnTapInput:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTapDown:
+    m_PersistentCalls:
+      m_Calls: []
+  OnTapUp:
+    m_PersistentCalls:
+      m_Calls: []
+  minSwipeLength: 0.5
+  triggerSwipeAtMinLength: 0
+  useEightDirections: 0
+  OnSwipeFail:
+    m_PersistentCalls:
+      m_Calls: []
+  DragableSurface:
+    serializedVersion: 2
+    m_Bits: 0
+--- !u!114 &655627709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655627703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 865c00bf19df9bd4cb415b1501bb2fee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnGameStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnGameEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStageSuccess:
+    m_PersistentCalls:
+      m_Calls: []
+  OnStageFail:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &983545284
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,6 +278,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 983545285}
+  - component: {fileID: 983545286}
   m_Layer: 0
   m_Name: InitManager
   m_TagString: Untagged
@@ -185,3 +301,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &983545286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 983545284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 809ad2175092b0143b8f9a3e867901dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
