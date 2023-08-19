@@ -104,6 +104,10 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
         _needleTween.Kill();
         _ropeRollTween.Kill();
         onProcess = false;
+        string productName = ProductionType.ToString();
+        Vector3 instantiatePos = produceSpot.position;
+        var go = PoolingSystem.Instance.InstantiateAPS(productName, instantiatePos);
+        go.GetComponent<IProduct>().MoveNextProcessPlatform();
     }
 
     public void ProcessorUnlock()

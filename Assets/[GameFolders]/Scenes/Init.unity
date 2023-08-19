@@ -310,6 +310,13 @@ MonoBehaviour:
     AllowGrow: 0
     AutoDestroy: 0
     clones: []
+  - ID: Socks
+    SourcePrefab: {fileID: 556675819079483895, guid: d8c548b9c9e4da04eac73aacf49b87a8,
+      type: 3}
+    MinNumberOfObject: 0
+    AllowGrow: 0
+    AutoDestroy: 0
+    clones: []
   DefaultCount: 10
 --- !u!114 &655627712
 MonoBehaviour:

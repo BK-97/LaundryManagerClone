@@ -5,6 +5,7 @@ using DG.Tweening;
 public class ProductController : MonoBehaviour,IProduct
 {
     #region Params
+    public MeshRenderer mesh;
     #endregion
     #region IProductMethods
 

@@ -638,6 +638,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1219894342940392411, guid: 135d5dcd374447c4686c74b178083e2d,
         type: 3}
+      propertyPath: ProductionType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1219894342940392411, guid: 135d5dcd374447c4686c74b178083e2d,
+        type: 3}
       propertyPath: processPerSeconds
       value: 1
       objectReference: {fileID: 0}
