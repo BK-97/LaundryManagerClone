@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class SewMachine : MonoBehaviour, ISelectable, IProcessor
 {
@@ -11,6 +12,11 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
     public int processTime;
     public Transform produceSpot;
     public Transform productTransform;
+    [Header("SewMachine Params")]
+    public Transform needle;
+    public Transform ropeRoll;
+    private Tween _needleTween;
+    private Tween _ropeRollTween;
 
     [Header("Serializefields")]
     [SerializeField]
@@ -77,7 +83,8 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
     public void ProcessStart()
     {
         Debug.Log("ProcessStart");
-
+        _needleTween = needle.DOMoveY(needle.transform.position.y-0.03f,0.1f).SetLoops(-1,LoopType.Yoyo);
+        _ropeRollTween = ropeRoll.DORotate(360 * Vector3.up, 4, RotateMode.FastBeyond360).SetEase(Ease.Linear).SetLoops(-1, LoopType.Restart);
         onProcess = true;
     }
 
@@ -94,6 +101,8 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
     public void ProcessEnd()
     {
         elapsedTime = 0.0f;
+        _needleTween.Kill();
+        _ropeRollTween.Kill();
         onProcess = false;
     }
 
@@ -117,7 +126,7 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
             ProcessUpdate();
         }
     }
-
+    
 
     #endregion
 }
