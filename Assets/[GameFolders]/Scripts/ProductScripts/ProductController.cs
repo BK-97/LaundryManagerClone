@@ -11,12 +11,12 @@ public class ProductController : MonoBehaviour,IProduct
     public void MoveProcess(IProcessor processor)
     {
         Transform targetTransform = processor.GetProductPlace();
-        transform.SetParent(null);
         transform.DOMove(targetTransform.position, 1).SetEase(Ease.Linear).OnComplete(() => MoveProcessEnd(processor));
     }
     public void MoveProcessEnd(IProcessor processor)
     {
         processor.GetProduct();
+        GetComponentInParent<ProductHolder>().Demolish();
         Destroy(gameObject);
     }
     
@@ -31,6 +31,7 @@ public class ProductController : MonoBehaviour,IProduct
     }
     #endregion
     #region MyMethods
+    
     private void OnEnable()
     {
         EventManager.OnProductArriveNextSceneButton.AddListener(()=>Destroy(gameObject));

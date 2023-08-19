@@ -5,10 +5,14 @@ using UnityEngine;
 public class SewMachine : MonoBehaviour, ISelectable, IProcessor
 {
     #region Params
+    [Header("Processor Info")]
     public EnumTypes.ProcessorTypes ProcessorType;
     public EnumTypes.ProductTypes ProductionType;
     public int processTime;
+    public Transform produceSpot;
+    public Transform productTransform;
 
+    [Header("Serializefields")]
     [SerializeField]
     private bool _isSelected;
     [SerializeField]
@@ -19,8 +23,8 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
     private bool onProcess;
     private float elapsedTime;
 
+    [Header("UI")]
     public Canvas LockCanvas;
-    public Transform productTransform;
     #endregion
 
     #region ISelectable
@@ -80,7 +84,6 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
     public void ProcessUpdate()
     {
         elapsedTime += Time.deltaTime;
-        Debug.Log(elapsedTime);
 
         if (elapsedTime >= processTime)
         {
