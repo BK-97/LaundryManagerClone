@@ -17,7 +17,7 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
     public Transform ropeRoll;
     private Tween _needleTween;
     private Tween _ropeRollTween;
-
+    private GameObject processingProduct;
     [Header("Serializefields")]
     [SerializeField]
     private bool _isSelected;
@@ -72,8 +72,6 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
     }
     public void GetProduct()
     {
-        Debug.Log("GetProduct");
-
         ProcessStart();
     }
     public Transform GetProductPlace()
@@ -86,8 +84,12 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
         _needleTween = needle.DOMoveY(needle.transform.position.y-0.03f,0.1f).SetLoops(-1,LoopType.Yoyo);
         _ropeRollTween = ropeRoll.DORotate(360 * Vector3.up, 4, RotateMode.FastBeyond360).SetEase(Ease.Linear).SetLoops(-1, LoopType.Restart);
         onProcess = true;
+        string productName = ProductionType.ToString();
+        Vector3 instantiatePos = produceSpot.position;
+        Quaternion instantiateRot= produceSpot.rotation;
+        processingProduct = PoolingSystem.Instance.InstantiateAPS(productName, instantiatePos, instantiateRot);
+        processingProduct.GetComponent<IFakeProduct>().StartUnDissolve(processTime);
     }
-
     public void ProcessUpdate()
     {
         elapsedTime += Time.deltaTime;
@@ -104,10 +106,7 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
         _needleTween.Kill();
         _ropeRollTween.Kill();
         onProcess = false;
-        string productName = ProductionType.ToString();
-        Vector3 instantiatePos = produceSpot.position;
-        var go = PoolingSystem.Instance.InstantiateAPS(productName, instantiatePos);
-        go.GetComponent<IProduct>().MoveNextProcessPlatform();
+        processingProduct.GetComponent<IProduct>().MoveNextProcessPlatform();
     }
 
     public void ProcessorUnlock()

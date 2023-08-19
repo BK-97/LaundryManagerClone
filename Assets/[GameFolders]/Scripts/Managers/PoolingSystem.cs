@@ -162,6 +162,8 @@ public class PoolingSystem : Singleton<PoolingSystem>
 
     public void DestroyAPS(GameObject clone)
     {
+        Debug.Log("Demolish");
+
         clone.transform.position = transform.position;
         clone.transform.rotation = transform.rotation;
         //clone.transform.localScale = Vector3.one;

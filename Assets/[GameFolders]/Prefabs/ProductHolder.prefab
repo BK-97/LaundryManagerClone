@@ -188,6 +188,7 @@ GameObject:
   - component: {fileID: 1532081855485508932}
   - component: {fileID: 3783640486892357890}
   - component: {fileID: 5221407694338853704}
+  - component: {fileID: -7471380894381862090}
   m_Layer: 0
   m_Name: ProductHolder
   m_TagString: Untagged
@@ -226,6 +227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   productObject: {fileID: 8324434334610126969}
   CircleImage: {fileID: 2690158933224180250}
+  bandController: {fileID: 0}
 --- !u!65 &5221407694338853704
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -239,6 +241,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.1868312, y: 0.1722116, z: 0.1868312}
   m_Center: {x: 0, y: -0.107, z: 0}
+--- !u!114 &-7471380894381862090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9117348885810081181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f33b9aaa1164724bb08d0929053ddcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3669242677956543199
 PrefabInstance:
   m_ObjectHideFlags: 0

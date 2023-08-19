@@ -12,6 +12,10 @@ public class ProductHolder : MonoBehaviour,ISelectable
     [HideInInspector]
     public BandController bandController;
     #endregion
+    private void Start()
+    {
+        productObject.GetComponent<ProductController>().holder = this;
+    }
     #region ISelectable
     public bool isSelected
     {
