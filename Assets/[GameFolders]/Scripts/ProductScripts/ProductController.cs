@@ -30,7 +30,7 @@ public class ProductController : MonoBehaviour,IProduct
     {
         holder.Demolish();
         processor.GetProduct(_productType,_colorType);
-        Destroy(gameObject);
+        PoolingSystem.Instance.DestroyAPS(gameObject);
     }
     public void MoveNextProcess()
     {
@@ -40,6 +40,7 @@ public class ProductController : MonoBehaviour,IProduct
     }
     public void Sell()
     {
+        ExchangeManager.Instance.AddCurrency(CurrencyType.Cash,300);
         Destroy(gameObject);
     }
     #endregion

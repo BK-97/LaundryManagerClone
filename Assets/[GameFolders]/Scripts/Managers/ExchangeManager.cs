@@ -29,7 +29,14 @@ public class ExchangeManager : Singleton<ExchangeManager>
     {
         UIPos = pos;
     }
-
+    private void OnEnable()
+    {
+        SceneController.Instance.OnSceneLoaded.AddListener(()=>OnCurrencyChange.Invoke(currencyDictionary));
+    }
+    private void OnDisable()
+    {
+        SceneController.Instance.OnSceneLoaded.RemoveListener(()=>OnCurrencyChange.Invoke(currencyDictionary));
+    }
     #region CurrencyMethods
     public bool UseCurrency(CurrencyType currencyType, int amount)
     {

@@ -11,7 +11,7 @@ public class BandController : MonoBehaviour
         for (int i = 0; i < 3; i++)
         {
             var go = PoolingSystem.Instance.InstantiateAPS("ProductHolder");
-            go.GetComponent<ProductHolder>().SetInfo(EnumTypes.ProductTypes.Rope,EnumTypes.ColorTypes.None,0);
+            go.GetComponent<ProductHolder>().SetInfo(EnumTypes.ProductTypes.Socks,EnumTypes.ColorTypes.None,0);
             Holders.Add(go);
             Holders[i].transform.position = HolderPoints[i].position;
             Holders[i].transform.rotation = HolderPoints[i].rotation;

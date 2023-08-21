@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3160109969341850977}
   - component: {fileID: 3160109969341850976}
   - component: {fileID: 3160109969341850979}
+  - component: {fileID: 4467081273899546370}
   m_Layer: 5
   m_Name: OptionsButton
   m_TagString: Untagged
@@ -120,7 +121,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3160109969341850976}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4467081273899546370}
+        m_TargetAssemblyTypeName: OptionsButton, Assembly-CSharp
+        m_MethodName: Test
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4467081273899546370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3160109969341850981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a333fd12e4610a3429f62e3422c7746d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3160109969639389122
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,6 +689,7 @@ GameObject:
   - component: {fileID: 3221586199551452795}
   - component: {fileID: 3800618355836746509}
   - component: {fileID: 1492326628640817338}
+  - component: {fileID: 7531871316274022705}
   m_Layer: 5
   m_Name: Exchange
   m_TagString: Untagged
@@ -757,6 +783,19 @@ MonoBehaviour:
   m_ChildScaleWidth: 1
   m_ChildScaleHeight: 1
   m_ReverseArrangement: 0
+--- !u!114 &7531871316274022705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7473038003336876257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a7af7519905a2a4da66eb44e0ab9f73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cashText: {fileID: 7935027613375226842}
 --- !u!1001 &4154288549524115554
 PrefabInstance:
   m_ObjectHideFlags: 0

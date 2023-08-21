@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
-
+using TMPro;
 public class SewMachine : MonoBehaviour, ISelectable, IProcessor
 {
     #region Params
@@ -14,6 +14,9 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
     public Transform produceSpot;
     public Transform productTransform;
     public int addWorth;
+    public int unlockLevel;
+    public int unlockCost;
+
 
     [Header("SewMachine Params")]
     public Transform needle;
@@ -34,6 +37,8 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
 
     [Header("UI")]
     public Image LockImage;
+    public Image ProductIcon;
+    public TextMeshProUGUI lockText;
 
     [Header("Particles")]
     public ParticleSystem stars;
@@ -90,7 +95,7 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
         _needleTween = needle.DOMoveY(needle.transform.position.y - 0.03f, 0.1f).SetLoops(-1, LoopType.Yoyo);
         ropeRoll.gameObject.SetActive(true);
         ropeRoll.GetComponent<SewRope>().StartWorking(processTime);
-        _ropeRollTween = ropeRoll.DORotate(360 * Vector3.up, 4, RotateMode.FastBeyond360).SetEase(Ease.Linear).SetLoops(-1, LoopType.Restart);
+        _ropeRollTween = ropeRoll.DOLocalRotate(360 * Vector3.up, 4, RotateMode.FastBeyond360).SetEase(Ease.Linear).SetLoops(-1, LoopType.Restart);
         _onProcess = true;
         
         Vector3 instantiatePos = produceSpot.position;
@@ -117,14 +122,22 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
         _ropeRollTween.Kill();
         ropeRoll.gameObject.SetActive(false);
         _onProcess = false;
-        processingProduct.GetComponent<ProductHolder>().currentProduct.GetComponent<IProduct>().Sell();
+        processingProduct.GetComponent<ProductHolder>().currentProduct.GetComponent<IProduct>().MoveNextProcess();
+        StartCoroutine(IconColorCO());
+
         stars.Play();
         clouds.Play();
     }
-
+    IEnumerator IconColorCO()
+    {
+        Color cacheColor = ProductIcon.color;
+        ProductIcon.color = Color.green;
+        yield return new WaitForSeconds(1.5f);
+        ProductIcon.color = cacheColor;
+    }
     public void ProcessorUnlock()
     {
-        LockImage.enabled = false;
+        LockImage.gameObject.SetActive(false);
         IsLocked = false;
     }
     #endregion
@@ -132,8 +145,20 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
     private void Start()
     {
         OnProcess = false;
+
         if (!IsLocked)
             ProcessorUnlock();
+        else
+        {
+            if (unlockLevel != 0)
+                lockText.text = "Level "+unlockLevel.ToString();
+            else
+                lockText.text = unlockCost.ToString();
+
+        }
+
+        ropeRoll.gameObject.SetActive(false);
+
     }
     private void Update()
     {

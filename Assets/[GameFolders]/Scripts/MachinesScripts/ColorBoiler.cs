@@ -30,7 +30,6 @@ public class ColorBoiler : MonoBehaviour, ISelectable,IProcessor
 
     [Header("UI")]
     public Image LockImage;
-    public Image ProductIcon;
 
     [Header("Particles")]
     public ParticleSystem stars;
@@ -105,18 +104,11 @@ public class ColorBoiler : MonoBehaviour, ISelectable,IProcessor
         elapsedTime = 0.0f;
         timerSlider.gameObject.SetActive(false);
         OnProcess = false;
-        processingProduct.GetComponent<ProductHolder>().currentProduct.GetComponent<IProduct>().MoveNextProcess();
-        StartCoroutine(IconColorCO());
+        processingProduct.GetComponent<ProductHolder>().currentProduct.GetComponent<IProduct>().Sell();
         stars.Play();
         clouds.Play();
     }
-    IEnumerator IconColorCO()
-    {
-        Color cacheColor = ProductIcon.color;
-        ProductIcon.color = Color.green;
-        yield return new WaitForSeconds(1.5f);
-        ProductIcon.color = cacheColor;
-    }
+
     public void ProcessorUnlock()
     {
         LockImage.enabled = false;
@@ -125,10 +117,9 @@ public class ColorBoiler : MonoBehaviour, ISelectable,IProcessor
     public void ProcessUpdate()
     {
         elapsedTime += Time.deltaTime;
-
+        timerSlider.value = elapsedTime;
         if (elapsedTime >= processTime)
         {
-            timerSlider.value = elapsedTime;
             ProcessEnd();
         }
     }

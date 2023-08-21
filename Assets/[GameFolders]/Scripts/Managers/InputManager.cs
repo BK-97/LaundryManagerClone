@@ -67,9 +67,10 @@ public class InputManager : Singleton<InputManager>
                 return;
             }
         }
-
+        
         if (Input.GetMouseButtonDown(0))
         {
+            Debug.Log("test");
             GameManager.Instance.StartGame();
             LevelManager.Instance.StartLevel();
         }

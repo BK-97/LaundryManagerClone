@@ -32,6 +32,7 @@ public class SceneChangerButton : MonoBehaviour
     }
     public void ChangeScene()
     {
+        Debug.Log("1");
         if (!isColorScene)
         {
             CameraController.OnColorOpen.Invoke();

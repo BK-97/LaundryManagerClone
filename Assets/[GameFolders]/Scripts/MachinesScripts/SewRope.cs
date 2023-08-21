@@ -20,7 +20,6 @@ public class SewRope : MonoBehaviour
     private IEnumerator WorkCoroutine(float workTime)
     {
         float interval = workTime/ropes.Count ;
-        Debug.Log("test"+ interval);
 
         while (ropes.Count > 0)
         {
