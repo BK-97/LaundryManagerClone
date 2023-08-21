@@ -3,27 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
-
-public class SewMachine : MonoBehaviour, ISelectable, IProcessor
+public class ColorBoiler : MonoBehaviour, ISelectable,IProcessor
 {
     #region Params
     [Header("Processor Info")]
     public EnumTypes.ProcessorTypes ProcessorType;
-    public EnumTypes.ProductTypes ProductionType;
+    public EnumTypes.ColorTypes ColorType;
     public int processTime;
     public Transform produceSpot;
     public Transform productTransform;
     public int addWorth;
+    public Slider timerSlider;
+    private EnumTypes.ProductTypes currentProductType;
 
-    [Header("SewMachine Params")]
-    public Transform needle;
-    public Transform ropeRoll;
-
-    private Tween _needleTween;
-    private Tween _ropeRollTween;
+    [Header("ColorBoiler Params")]
     private GameObject processingProduct;
 
-    [Header("Selectable Params")]
+    [Header("Serializefields")]
     [SerializeField]
     private bool _isSelected;
     [SerializeField]
@@ -34,6 +30,7 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
 
     [Header("UI")]
     public Image LockImage;
+    public Image ProductIcon;
 
     [Header("Particles")]
     public ParticleSystem stars;
@@ -49,9 +46,10 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
 
     public void Selected()
     {
+        Debug.Log("Machine Selected");
+
         if (isSelected)
             return;
-        Debug.Log("Machine Selected");
         isSelected = true;
         Deselected();
     }
@@ -77,28 +75,52 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
         get => _onProcess;
         set { _onProcess = value; }
     }
-    public void GetProduct(EnumTypes.ProductTypes proType, EnumTypes.ColorTypes colorType)
+    public void GetProduct(EnumTypes.ProductTypes productType,EnumTypes.ColorTypes colorType)
     {
+        currentProductType = productType;
         ProcessStart();
+
     }
+
     public Transform GetProductPlace()
     {
         return productTransform;
     }
     public void ProcessStart()
     {
-        _needleTween = needle.DOMoveY(needle.transform.position.y - 0.03f, 0.1f).SetLoops(-1, LoopType.Yoyo);
-        ropeRoll.gameObject.SetActive(true);
-        ropeRoll.GetComponent<SewRope>().StartWorking(processTime);
-        _ropeRollTween = ropeRoll.DORotate(360 * Vector3.up, 4, RotateMode.FastBeyond360).SetEase(Ease.Linear).SetLoops(-1, LoopType.Restart);
-        _onProcess = true;
-        
+        Debug.Log("ProcessStart");
+        timerSlider.gameObject.SetActive(true);
+        timerSlider.maxValue = processTime;
+        timerSlider.value = 0;
         Vector3 instantiatePos = produceSpot.position;
         Quaternion instantiateRot = produceSpot.rotation;
         processingProduct = PoolingSystem.Instance.InstantiateAPS("ProductHolder", instantiatePos, instantiateRot);
         ProductHolder productHolder = processingProduct.GetComponent<ProductHolder>();
-        productHolder.SetInfo(ProductionType,EnumTypes.ColorTypes.None, addWorth);
-        productHolder.currentProduct.GetComponent<IFakeProduct>().StartUnDissolve(processTime);
+        productHolder.SetInfo(currentProductType,ColorType,addWorth);
+        OnProcess = true;
+
+    }
+    public void ProcessEnd()
+    {
+        elapsedTime = 0.0f;
+        timerSlider.gameObject.SetActive(false);
+        OnProcess = false;
+        processingProduct.GetComponent<ProductHolder>().currentProduct.GetComponent<IProduct>().MoveNextProcess();
+        StartCoroutine(IconColorCO());
+        stars.Play();
+        clouds.Play();
+    }
+    IEnumerator IconColorCO()
+    {
+        Color cacheColor = ProductIcon.color;
+        ProductIcon.color = Color.green;
+        yield return new WaitForSeconds(1.5f);
+        ProductIcon.color = cacheColor;
+    }
+    public void ProcessorUnlock()
+    {
+        LockImage.enabled = false;
+        IsLocked = false;
     }
     public void ProcessUpdate()
     {
@@ -106,29 +128,12 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
 
         if (elapsedTime >= processTime)
         {
+            timerSlider.value = elapsedTime;
             ProcessEnd();
         }
     }
-
-    public void ProcessEnd()
-    {
-        elapsedTime = 0.0f;
-        _needleTween.Kill();
-        _ropeRollTween.Kill();
-        ropeRoll.gameObject.SetActive(false);
-        _onProcess = false;
-        processingProduct.GetComponent<ProductHolder>().currentProduct.GetComponent<IProduct>().Sell();
-        stars.Play();
-        clouds.Play();
-    }
-
-    public void ProcessorUnlock()
-    {
-        LockImage.enabled = false;
-        IsLocked = false;
-    }
     #endregion
-    #region MyMethods
+    #region MonoBehaviourMethods
     private void Start()
     {
         OnProcess = false;
@@ -137,12 +142,10 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
     }
     private void Update()
     {
-        if (_onProcess)
+        if (OnProcess)
         {
             ProcessUpdate();
         }
     }
-
-
     #endregion
 }

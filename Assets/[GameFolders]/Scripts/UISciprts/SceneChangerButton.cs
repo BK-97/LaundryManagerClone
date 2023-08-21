@@ -7,7 +7,7 @@ public class SceneChangerButton : MonoBehaviour
 {
     public Button button;
     private Vector3 offSet;
-    
+    bool isColorScene;
     private void SetUIPos()
     {
         offSet = new Vector3(0, 0, -Camera.main.transform.position.z);
@@ -29,5 +29,20 @@ public class SceneChangerButton : MonoBehaviour
     {
         Vector3 currentScale = button.transform.localScale;
         button.transform.DOPunchScale(currentScale * 1.01f, 0.2f);
+    }
+    public void ChangeScene()
+    {
+        if (!isColorScene)
+        {
+            CameraController.OnColorOpen.Invoke();
+            isColorScene = true;
+            return;
+        }
+        else
+        {
+            CameraController.OnSewOpen.Invoke();
+            isColorScene = false;
+        }
+
     }
 }

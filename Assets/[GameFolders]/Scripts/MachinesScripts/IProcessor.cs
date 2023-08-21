@@ -2,8 +2,8 @@ using UnityEngine;
 public interface IProcessor 
 {
     public bool IsLocked { get; set; }
-    public bool IsEmpty { get; set; }
-    void GetProduct();
+    public bool OnProcess { get; set; }
+    void GetProduct(EnumTypes.ProductTypes proType,EnumTypes.ColorTypes colorType);
     void ProcessStart();
     void ProcessUpdate();
     void ProcessEnd();

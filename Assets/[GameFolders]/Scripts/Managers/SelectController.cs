@@ -36,7 +36,7 @@ public class SelectController : MonoBehaviour
     }
     private void CalculateSelectedProcessor(IProcessor processor, ISelectable selectable)
     {
-        if (!processor.IsEmpty)
+        if (processor.OnProcess)
             return;
         if (processor.IsLocked)
             return;

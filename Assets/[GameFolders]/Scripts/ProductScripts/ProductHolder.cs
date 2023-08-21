@@ -14,7 +14,34 @@ public class ProductHolder : MonoBehaviour,ISelectable
     [HideInInspector]
     public BandController bandController;
     #endregion
-    public void SetInfo(EnumTypes.ProductTypes productType)
+    
+    #region ISelectable
+    public bool isSelected
+    {
+        get => _isSelected;
+        set { _isSelected = value; }
+    }
+
+    public void Selected()
+    {
+        if (isSelected)
+            return;
+
+        BrightColor();
+        ShakeEffect();
+        isSelected = true;
+    }
+    public void Deselected()
+    {
+        if (!isSelected)
+            return;
+
+        Fade();
+        isSelected = false;
+    }
+    #endregion
+    #region MyMethods
+    public void SetInfo(EnumTypes.ProductTypes productType,EnumTypes.ColorTypes colorType,int addWorth)
     {
         for (int i = 0; i < productObjects.Count; i++)
         {
@@ -25,7 +52,7 @@ public class ProductHolder : MonoBehaviour,ISelectable
             switch (productType)
             {
                 case EnumTypes.ProductTypes.Rope:
-                    currentProduct=productObjects[0];
+                    currentProduct = productObjects[0];
                     break;
                 case EnumTypes.ProductTypes.Socks:
                     currentProduct = productObjects[1];
@@ -39,36 +66,10 @@ public class ProductHolder : MonoBehaviour,ISelectable
                 default:
                     break;
             }
+            currentProduct.GetComponent<IProduct>().SetInfo(productType,colorType, addWorth);
             currentProduct.SetActive(true);
         }
     }
-    #region ISelectable
-    public bool isSelected
-    {
-        get => _isSelected;
-        set { _isSelected = value; }
-    }
-
-    public void Selected()
-    {
-        if (isSelected)
-            return;
-        Debug.Log("Holder Selected");
-
-        BrightColor();
-        ShakeEffect();
-        isSelected = true;
-    }
-    public void Deselected()
-    {
-        if (!isSelected)
-            return;
-        Debug.Log("Holder DeSelected");
-        Fade();
-        isSelected = false;
-    }
-    #endregion
-    #region MyMethods
     public void ReadyOnBand()
     {
         CircleImage.enabled = true;

@@ -1,8 +1,10 @@
 using UnityEngine;
 public interface IProduct
 {
-    void Sell();
+    int ProductWorth { get; set; }
+    void SetInfo(EnumTypes.ProductTypes proType,EnumTypes.ColorTypes colorType,int addWorth);
     void MoveProcess(IProcessor processor);
-    void MoveProcessEnd(IProcessor processor);
-    void MoveNextProcessPlatform();
+    void MoveNextProcess();
+    void Sell();
+
 }
