@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using DG.Tweening;
 
 public class SewMachine : MonoBehaviour, ISelectable, IProcessor
@@ -31,6 +32,12 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
 
     [Header("UI")]
     public Canvas LockCanvas;
+    public Image ProductIcon;
+
+    [Header("Particles")]
+    public ParticleSystem stars;
+    public ParticleSystem clouds;
+
     #endregion
 
     #region ISelectable
@@ -81,14 +88,17 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
     public void ProcessStart()
     {
         Debug.Log("ProcessStart");
-        _needleTween = needle.DOMoveY(needle.transform.position.y-0.03f,0.1f).SetLoops(-1,LoopType.Yoyo);
+        _needleTween = needle.DOMoveY(needle.transform.position.y - 0.03f, 0.1f).SetLoops(-1, LoopType.Yoyo);
+        ropeRoll.gameObject.SetActive(true);
+        ropeRoll.GetComponent<SewRope>().StartWorking(processTime);
         _ropeRollTween = ropeRoll.DORotate(360 * Vector3.up, 4, RotateMode.FastBeyond360).SetEase(Ease.Linear).SetLoops(-1, LoopType.Restart);
         onProcess = true;
-        string productName = ProductionType.ToString();
         Vector3 instantiatePos = produceSpot.position;
-        Quaternion instantiateRot= produceSpot.rotation;
-        processingProduct = PoolingSystem.Instance.InstantiateAPS(productName, instantiatePos, instantiateRot);
-        processingProduct.GetComponent<IFakeProduct>().StartUnDissolve(processTime);
+        Quaternion instantiateRot = produceSpot.rotation;
+        processingProduct = PoolingSystem.Instance.InstantiateAPS("ProductHolder", instantiatePos, instantiateRot);
+        ProductHolder productHolder = processingProduct.GetComponent<ProductHolder>();
+        productHolder.SetInfo(ProductionType);
+        productHolder.currentProduct.GetComponent<IFakeProduct>().StartUnDissolve(processTime);
     }
     public void ProcessUpdate()
     {
@@ -105,8 +115,19 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
         elapsedTime = 0.0f;
         _needleTween.Kill();
         _ropeRollTween.Kill();
+        ropeRoll.gameObject.SetActive(false);
         onProcess = false;
-        processingProduct.GetComponent<IProduct>().MoveNextProcessPlatform();
+        processingProduct.GetComponent<ProductHolder>().currentProduct.GetComponent<IProduct>().MoveNextProcessPlatform();
+        StartCoroutine(IconColorCO());
+        stars.Play();
+        clouds.Play();
+    }
+    IEnumerator IconColorCO()
+    {
+        Color cacheColor = ProductIcon.color;
+        ProductIcon.color = Color.green;
+        yield return new WaitForSeconds(1.5f);
+        ProductIcon.color = cacheColor;
     }
 
     public void ProcessorUnlock()
@@ -129,7 +150,7 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
             ProcessUpdate();
         }
     }
-    
+
 
     #endregion
 }

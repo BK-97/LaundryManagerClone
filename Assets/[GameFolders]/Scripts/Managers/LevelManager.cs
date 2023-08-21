@@ -16,7 +16,7 @@ public class LevelManager : Singleton<LevelManager>
 
     private bool isLevelStarted;
     public bool IsLevelStarted { get { return isLevelStarted; } set { isLevelStarted = value; } }
-
+    public bool canLevelStart;
     public int LevelIndex
     {
         get
@@ -45,6 +45,7 @@ public class LevelManager : Singleton<LevelManager>
     private void OnEnable()
     {
         GameManager.Instance.OnStageFail.AddListener(ReloadLevel);
+        
     }
 
     private void OnDisable()
@@ -88,8 +89,11 @@ public class LevelManager : Singleton<LevelManager>
     }
     public void StartLevel()
     {
+        if (!canLevelStart)
+            return;
         if (IsLevelStarted)
             return;
+        canLevelStart = false;
         IsLevelStarted = true;
         OnLevelStart.Invoke();
     }

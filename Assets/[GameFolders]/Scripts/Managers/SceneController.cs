@@ -55,6 +55,7 @@ public class SceneController : Singleton<SceneController>
             SceneManager.SetActiveScene(loadedScene);
             yield return new WaitForSeconds(0.2f);
             OnSceneLoaded.Invoke();
+            LevelManager.Instance.canLevelStart = true;
         }
 
         OnSceneInfo.Invoke(loadedScene, true);
@@ -66,6 +67,7 @@ public class SceneController : Singleton<SceneController>
         Scene scene = SceneManager.GetSceneByName(sceneName);
         SceneManager.SetActiveScene(SceneManager.GetSceneAt(0));
         StartCoroutine(UnloadSceneCo(scene));
+
     }
 
     IEnumerator UnloadSceneCo(Scene scene)

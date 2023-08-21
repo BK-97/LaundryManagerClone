@@ -6,15 +6,41 @@ using DG.Tweening;
 public class ProductHolder : MonoBehaviour,ISelectable
 {
     #region Params
-    public GameObject productObject;
+    public List<GameObject> productObjects;
+    [HideInInspector]
+    public GameObject currentProduct;
     public Image CircleImage;
     private bool _isSelected;
     [HideInInspector]
     public BandController bandController;
     #endregion
-    private void Start()
+    public void SetInfo(EnumTypes.ProductTypes productType)
     {
-        productObject.GetComponent<ProductController>().holder = this;
+        for (int i = 0; i < productObjects.Count; i++)
+        {
+            productObjects[i].SetActive(false);
+        }
+        for (int i = 0; i < productObjects.Count; i++)
+        {
+            switch (productType)
+            {
+                case EnumTypes.ProductTypes.Rope:
+                    currentProduct=productObjects[0];
+                    break;
+                case EnumTypes.ProductTypes.Socks:
+                    currentProduct = productObjects[1];
+                    break;
+                case EnumTypes.ProductTypes.Bra:
+                    currentProduct = productObjects[2];
+                    break;
+                case EnumTypes.ProductTypes.Short:
+                    currentProduct = productObjects[3];
+                    break;
+                default:
+                    break;
+            }
+            currentProduct.SetActive(true);
+        }
     }
     #region ISelectable
     public bool isSelected
@@ -43,7 +69,11 @@ public class ProductHolder : MonoBehaviour,ISelectable
     }
     #endregion
     #region MyMethods
-    
+    public void ReadyOnBand()
+    {
+        CircleImage.enabled = true;
+    }
+
     private void BrightColor()
     {
         CircleImage.color = Color.green;

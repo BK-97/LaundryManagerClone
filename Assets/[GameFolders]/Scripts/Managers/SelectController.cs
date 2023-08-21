@@ -74,7 +74,7 @@ public class SelectController : MonoBehaviour
         ProductHolder holder = tappedObject.GetComponent<ProductHolder>();
         if (holder == null)
             return null;
-        IProduct product = holder.productObject.GetComponent<IProduct>();
+        IProduct product = holder.currentProduct.GetComponent<IProduct>();
         return product;
     }
     private IProcessor GetSelectedProcessor(GameObject tappedObject)

@@ -194,6 +194,7 @@ MonoBehaviour:
   OnLevelFinish:
     m_PersistentCalls:
       m_Calls: []
+  canLevelStart: 0
 --- !u!114 &655627707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,15 +304,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SourceObjects:
-  - ID: Rope
+  - ID: ProductHolder
     SourcePrefab: {fileID: 9117348885810081181, guid: 03766614d28f48e4f815e48c839560b8,
-      type: 3}
-    MinNumberOfObject: 0
-    AllowGrow: 0
-    AutoDestroy: 0
-    clones: []
-  - ID: Socks
-    SourcePrefab: {fileID: 556675819079483895, guid: d8c548b9c9e4da04eac73aacf49b87a8,
       type: 3}
     MinNumberOfObject: 0
     AllowGrow: 0

@@ -10,11 +10,14 @@ public class BandController : MonoBehaviour
     {
         for (int i = 0; i < 3; i++)
         {
-            var go = PoolingSystem.Instance.InstantiateAPS("Rope");
+            var go = PoolingSystem.Instance.InstantiateAPS("ProductHolder");
+            go.GetComponent<ProductHolder>().SetInfo(EnumTypes.ProductTypes.Rope);
             Holders.Add(go);
             Holders[i].transform.position = HolderPoints[i].position;
-        }
+            Holders[i].transform.rotation = HolderPoints[i].rotation;
+            go.GetComponent<ProductHolder>().ReadyOnBand();
 
+        }
     }
     private void OnEnable()
     {
@@ -26,7 +29,6 @@ public class BandController : MonoBehaviour
     }
     public void SortHolders()
     {
-
         for (int i = 0; i < Holders.Count; i++)
         {
             float distance = Vector3.Distance(Holders[i].transform.position, HolderPoints[i].position);
@@ -42,6 +44,7 @@ public class BandController : MonoBehaviour
             return;
         }
         Holders.Add(newHolder);
+        newHolder.GetComponent<ProductHolder>().ReadyOnBand();
         SortHolders();
     }
     public void RemoveHolder(GameObject removeHolder)
