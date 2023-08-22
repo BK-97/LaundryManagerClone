@@ -139,6 +139,8 @@ GameObject:
   - component: {fileID: 655627705}
   - component: {fileID: 655627710}
   - component: {fileID: 655627712}
+  - component: {fileID: 655627713}
+  - component: {fileID: 655627714}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -301,6 +303,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69b5246eb8f4645469075ada77b43972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &655627713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655627703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3f6de0b9e4db9b4797a7fab9d3b7d7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ProductImages:
+  - {fileID: 21300000, guid: 9d894e190daea4768aec27190ec8c10b, type: 3}
+  - {fileID: 21300000, guid: 416067fa297e64842be01c0172c22968, type: 3}
+  - {fileID: 21300000, guid: 061414766444d4d078f6f4a17b0f255e, type: 3}
+  - {fileID: 21300000, guid: b3a787b0df1ae4bc28b989983fc288b0, type: 3}
+  orderLists:
+  - orders:
+    - ProductType: 1
+      ColorType: 0
+      Amount: 1
+  - orders:
+    - ProductType: 1
+      ColorType: 0
+      Amount: 3
+--- !u!114 &655627714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655627703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2755d445a426714793d290244c60797, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Colors:
+  - colorCode: {r: 0, g: 1, b: 0.97150254, a: 1}
+    colorType: 0
+  - colorCode: {r: 0, g: 0.40287805, b: 0.9811321, a: 1}
+    colorType: 1
+  - colorCode: {r: 0.17801023, g: 1, b: 0, a: 1}
+    colorType: 2
+  - colorCode: {r: 1, g: 0, b: 0, a: 1}
+    colorType: 3
 --- !u!1 &983545284
 GameObject:
   m_ObjectHideFlags: 0
