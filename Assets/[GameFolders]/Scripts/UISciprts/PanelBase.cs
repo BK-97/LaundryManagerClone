@@ -4,7 +4,8 @@ using UnityEngine;
 
 public abstract class PanelBase : MonoBehaviour
 {
-    private CanvasGroup canvasGroup;
+    [HideInInspector]
+    public CanvasGroup canvasGroup;
 
     protected virtual void Awake()
     {
@@ -18,6 +19,7 @@ public abstract class PanelBase : MonoBehaviour
         {
             canvasGroup.interactable = true;
             canvasGroup.alpha = 1;
+            canvasGroup.blocksRaycasts = true;
         }
     }
 
@@ -27,6 +29,8 @@ public abstract class PanelBase : MonoBehaviour
         {
             canvasGroup.interactable = false;
             canvasGroup.alpha = 0;
+            canvasGroup.blocksRaycasts = false;
+
         }
     }
 }

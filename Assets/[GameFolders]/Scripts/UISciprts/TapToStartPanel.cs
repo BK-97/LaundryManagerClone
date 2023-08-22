@@ -18,6 +18,11 @@ public class TapToStartPanel : PanelBase
         LevelManager.Instance.OnLevelStart.RemoveListener(HidePanel);
         SceneController.Instance.OnSceneLoaded.RemoveListener(ShowPanel);
     }
+    public override void ShowPanel()
+    {
+        base.ShowPanel();
+        canvasGroup.blocksRaycasts = false;
+    }
     private void Start()
     {
         handImage.gameObject.transform.DOScale(Vector3.one*1.1f,1).SetLoops(-1,LoopType.Yoyo);

@@ -70,7 +70,6 @@ public class InputManager : Singleton<InputManager>
         
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("test");
             GameManager.Instance.StartGame();
             LevelManager.Instance.StartLevel();
         }
