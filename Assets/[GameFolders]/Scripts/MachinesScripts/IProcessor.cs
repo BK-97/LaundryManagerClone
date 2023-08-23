@@ -3,7 +3,7 @@ public interface IProcessor
 {
     public bool IsLocked { get; set; }
     public bool OnProcess { get; set; }
-    void GetProduct(EnumTypes.ProductTypes proType,EnumTypes.ColorTypes colorType);
+    void GetProduct(ProductHolder productHolder);
     void ProcessStart();
     void ProcessUpdate();
     void ProcessEnd();

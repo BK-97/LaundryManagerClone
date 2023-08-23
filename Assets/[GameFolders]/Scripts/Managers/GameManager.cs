@@ -37,6 +37,7 @@ public class GameManager : Singleton<GameManager>
     public bool IsStageCompleted { get { return isStageCompleted; } set { isStageCompleted = value; } }
 
     public GameConfig GameConfig;
+    [HideInInspector]
     public Vector3 NextSceneUIPos;
     private void OnEnable()
     {

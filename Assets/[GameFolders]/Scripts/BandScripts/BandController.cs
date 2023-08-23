@@ -4,45 +4,48 @@ using UnityEngine;
 
 public class BandController : MonoBehaviour
 {
+    public BandController nextBand;
+    private RawMaterialSpawner matSpawner;
     public List<Transform> HolderPoints;
     public List<GameObject> Holders;
     public bool colorBoil;
-    private void OnEnable()
+    private void Start()
     {
-        EventManager.OnProductArriveNextSceneButton.AddListener(RemoveHolder);
-    }
-    private void OnDisable()
-    {
-        EventManager.OnProductArriveNextSceneButton.RemoveListener(RemoveHolder);
+        matSpawner = GetComponent<RawMaterialSpawner>();
     }
     public void SortHolders()
     {
-
         for (int i = 0; i < Holders.Count; i++)
         {
             float distance = Vector3.Distance(Holders[i].transform.position, HolderPoints[i].position);
             if (distance > 0.1f)
                 Holders[i].GetComponent<ProductHolder>().MovePoint(HolderPoints[i].position);
         }
-
     }
     public void AddHolder(GameObject newHolder)
     {
+        newHolder.transform.position = HolderPoints[Holders.Count].position;
+        newHolder.transform.rotation = HolderPoints[Holders.Count].rotation;
         Holders.Add(newHolder);
-        newHolder.GetComponent<ProductHolder>().ReadyOnBand();
-        SortHolders();
+        newHolder.GetComponent<ProductHolder>().bandController=this;
+        newHolder.GetComponent<ProductHolder>().OnBand();
     }
     public void RemoveHolder(GameObject removeHolder)
     {
-        foreach (var item in Holders)
+        for (int i = Holders.Count - 1; i >= 0; i--)
         {
-            if (removeHolder == item)
+            if (removeHolder == Holders[i])
             {
-                Holders.Remove(removeHolder);
+                Holders.RemoveAt(i);
             }
         }
+
         if (Holders.Count == 0)
-            EventManager.OnRawMatEnd.Invoke();
+        {
+            if (matSpawner != null)
+                matSpawner.Spawn();
+        }
+
         SortHolders();
     }
 }

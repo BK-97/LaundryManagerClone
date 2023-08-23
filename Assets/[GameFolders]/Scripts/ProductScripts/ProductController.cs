@@ -5,7 +5,8 @@ using DG.Tweening;
 public class ProductController : MonoBehaviour,IProduct
 {
     #region Params
-    public ProductHolder holder;
+    private ProductHolder holder;
+    public ProductHolder Holder { get { return (holder == null) ? holder = GetComponentInParent<ProductHolder>() : holder; } }
     [HideInInspector]
     public EnumTypes.ProductTypes productType;
     [HideInInspector]
@@ -19,23 +20,18 @@ public class ProductController : MonoBehaviour,IProduct
         ProductWorth += addWorth;
         productType = proType;
         this.colorType = colorType;
-
     }
     public void MoveProcess(IProcessor processor)
     {
-        Debug.Log("MoveProcessStart");
-
         Transform targetTransform = processor.GetProductPlace();
+        Holder.CircleImageScale();
         transform.DOMove(targetTransform.position, 1).SetEase(Ease.Linear).OnComplete(() => MoveProcessEnd(processor));
     }
     public void MoveProcessEnd(IProcessor processor)
     {
-        holder.Demolish();
-        processor.GetProduct(productType,colorType);
-        transform.localPosition = Vector3.zero;
-        transform.localRotation = Quaternion.identity;
-        PoolingSystem.Instance.DestroyAPS(holder.gameObject);
-
+        Holder.OutBand();
+        Holder.bandController.RemoveHolder(Holder.gameObject);
+        processor.GetProduct(Holder);
     }
     public void MoveNextProcess()
     {
@@ -53,7 +49,7 @@ public class ProductController : MonoBehaviour,IProduct
     public void BecomeFloadingUI()
     {
         ExchangeManager.Instance.AddCurrency(CurrencyType.Cash, ProductWorth); //bu kýsým FloadingUI da olacak
-        PoolingSystem.Instance.DestroyAPS(holder.gameObject);
+        PoolingSystem.Instance.DestroyAPS(Holder.gameObject);
     }
     public void MoveUI(Vector3 UIPos)
     {
@@ -66,8 +62,11 @@ public class ProductController : MonoBehaviour,IProduct
     }
     private void ProductNextScene()
     {
-        EventManager.OnProductArriveNextSceneButton.Invoke(holder.gameObject);
-        PoolingSystem.Instance.DestroyAPS(holder.gameObject);
+        transform.localPosition = Vector3.zero;
+        transform.localRotation = Quaternion.identity;
+        Holder.bandController.nextBand.AddHolder(Holder.gameObject);
+        EventManager.OnProductChangeBand.Invoke();
+
     }
 
     #endregion

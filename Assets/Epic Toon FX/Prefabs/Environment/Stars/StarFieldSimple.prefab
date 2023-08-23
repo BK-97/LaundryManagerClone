@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 415704}
   - component: {fileID: 19896564}
   - component: {fileID: 19971904}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tinysparkles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4872,7 +4872,7 @@ GameObject:
   - component: {fileID: 19849114}
   - component: {fileID: 19938616}
   - component: {fileID: 11448678}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: StarFieldSimple
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4888,7 +4888,7 @@ Transform:
   m_GameObject: {fileID: 186908}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.45199, y: 0.45199, z: 0.45199}
+  m_LocalScale: {x: 0.5358794, y: 0.5358794, z: 0.5358794}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 415704}
@@ -4979,7 +4979,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 3
       scalar: 2
-      minScalar: 1.5
+      minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:

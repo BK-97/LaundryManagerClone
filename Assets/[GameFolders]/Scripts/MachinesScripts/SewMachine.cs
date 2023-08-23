@@ -24,7 +24,7 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
 
     private Tween _needleTween;
     private Tween _ropeRollTween;
-    private GameObject processingProduct;
+    private ProductHolder processingProduct;
 
     [Header("Selectable Params")]
     [SerializeField]
@@ -44,6 +44,7 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
     [Header("Particles")]
     public ParticleSystem stars;
     public ParticleSystem clouds;
+    public ParticleSystem particleRain;
 
     #endregion
     #region ISelectable
@@ -81,8 +82,9 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
         get => _onProcess;
         set { _onProcess = value; }
     }
-    public void GetProduct(EnumTypes.ProductTypes proType, EnumTypes.ColorTypes colorType)
+    public void GetProduct(ProductHolder proHolder)
     {
+        processingProduct = proHolder;
         ProcessStart();
     }
     public Transform GetProductPlace()
@@ -96,13 +98,14 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
         ropeRoll.GetComponent<SewRope>().StartWorking(processTime);
         _ropeRollTween = ropeRoll.DOLocalRotate(360 * Vector3.up, 4, RotateMode.FastBeyond360).SetEase(Ease.Linear).SetLoops(-1, LoopType.Restart);
         _onProcess = true;
-        
-        Vector3 instantiatePos = produceSpot.position;
-        Quaternion instantiateRot = produceSpot.rotation;
-        processingProduct = PoolingSystem.Instance.InstantiateAPS("ProductHolder", instantiatePos, instantiateRot);
-        ProductHolder productHolder = processingProduct.GetComponent<ProductHolder>();
-        productHolder.SetInfo(ProductionType,EnumTypes.ColorTypes.None, addWorth);
-        productHolder.currentProduct.GetComponent<IFakeProduct>().StartUnDissolve(processTime);
+
+        processingProduct.gameObject.transform.position = produceSpot.position;
+        processingProduct.gameObject.transform.rotation = produceSpot.rotation;
+        processingProduct.currentProduct.gameObject.transform.localPosition = Vector3.zero;
+        processingProduct.currentProduct.gameObject.transform.localRotation = Quaternion.identity;
+
+        processingProduct.SetInfo(ProductionType,EnumTypes.ColorTypes.None, addWorth);
+        processingProduct.currentProduct.GetComponent<IFakeProduct>().StartUnDissolve(processTime);
     }
     public void ProcessUpdate()
     {
@@ -121,11 +124,16 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
         _ropeRollTween.Kill();
         ropeRoll.gameObject.SetActive(false);
         _onProcess = false;
-        processingProduct.GetComponent<ProductHolder>().currentProduct.GetComponent<IProduct>().MoveNextProcess();
         StartCoroutine(IconColorCO());
-
+        StartCoroutine(WaitForSendingProduct());
         stars.Play();
         clouds.Play();
+    }
+    IEnumerator WaitForSendingProduct()
+    {
+        yield return new WaitForSeconds(1.5f);
+        processingProduct.GetComponent<ProductHolder>().currentProduct.GetComponent<IProduct>().MoveNextProcess();
+
     }
     IEnumerator IconColorCO()
     {
@@ -138,13 +146,13 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
     {
         if (LevelManager.Instance.currentDay >= unlockLevel)
         {
-
             if (ExchangeManager.Instance.GetCurrency(CurrencyType.Cash) >= unlockCost)
             {
                 ProductIconHolder.gameObject.SetActive(true);
                 ProductIcon.sprite = OrderManager.Instance.GetProductSprite(ProductionType);
                 ExchangeManager.Instance.UseCurrency(CurrencyType.Cash, unlockCost);
-                //unlock fx
+                if(LevelManager.Instance.IsLevelStarted)
+                    particleRain.Play();
                 LockImage.gameObject.SetActive(false);
                 IsLocked = false;
             }

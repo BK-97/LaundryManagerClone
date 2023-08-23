@@ -678,7 +678,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colorScene: {fileID: 379442366}
   sewScene: {fileID: 330585543}
-  TestBand: {fileID: 1808523314}
 --- !u!1 &730232918
 GameObject:
   m_ObjectHideFlags: 0
@@ -1055,12 +1054,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5471469248350402700, guid: 912648680a28c6e4c999610ed44b368c,
+        type: 3}
+      propertyPath: processableProductType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6285026832466643976, guid: 912648680a28c6e4c999610ed44b368c,
         type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6285026832466643976, guid: 912648680a28c6e4c999610ed44b368c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 912648680a28c6e4c999610ed44b368c, type: 3}
 --- !u!4 &1808523313 stripped
 Transform:
@@ -1311,6 +1316,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1219894342940392411, guid: 135d5dcd374447c4686c74b178083e2d,
         type: 3}
+      propertyPath: addWorth
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 1219894342940392411, guid: 135d5dcd374447c4686c74b178083e2d,
+        type: 3}
       propertyPath: _isLocked
       value: 1
       objectReference: {fileID: 0}
@@ -1318,6 +1328,11 @@ PrefabInstance:
         type: 3}
       propertyPath: unlockCost
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1219894342940392411, guid: 135d5dcd374447c4686c74b178083e2d,
+        type: 3}
+      propertyPath: processTime
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1219894342940392411, guid: 135d5dcd374447c4686c74b178083e2d,
         type: 3}
@@ -1411,13 +1426,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4868841949401882156, guid: 135d5dcd374447c4686c74b178083e2d,
         type: 3}
+      propertyPath: addWorth
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4868841949401882156, guid: 135d5dcd374447c4686c74b178083e2d,
+        type: 3}
       propertyPath: _isLocked
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4868841949401882156, guid: 135d5dcd374447c4686c74b178083e2d,
         type: 3}
       propertyPath: processTime
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4868841949401882156, guid: 135d5dcd374447c4686c74b178083e2d,
         type: 3}
@@ -1514,6 +1534,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5471469248350402700, guid: 912648680a28c6e4c999610ed44b368c,
+        type: 3}
+      propertyPath: nextBand
+      value: 
+      objectReference: {fileID: 1808523314}
     - target: {fileID: 5471469248350402700, guid: 912648680a28c6e4c999610ed44b368c,
         type: 3}
       propertyPath: colorBoil

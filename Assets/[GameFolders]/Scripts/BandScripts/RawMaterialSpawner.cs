@@ -10,25 +10,17 @@ public class RawMaterialSpawner : MonoBehaviour
     {
         Spawn();
     }
-    private void OnEnable()
-    {
-        EventManager.OnRawMatEnd.AddListener(Spawn);
-    }
-    private void OnDisable()
-    {
-        EventManager.OnRawMatEnd.RemoveListener(Spawn);
 
-    }
     public void Spawn()
     {
         for (int i = 0; i < 3; i++)
         {
             var go = PoolingSystem.Instance.InstantiateAPS("ProductHolder");
             go.GetComponent<ProductHolder>().SetInfo(EnumTypes.ProductTypes.Rope, EnumTypes.ColorTypes.None, 0);
-            BandController.Holders.Add(go);
+            BandController.AddHolder(go);
             BandController.Holders[i].transform.position = BandController.HolderPoints[i].position;
             BandController.Holders[i].transform.rotation = BandController.HolderPoints[i].rotation;
-            go.GetComponent<ProductHolder>().ReadyOnBand();
+            go.GetComponent<ProductHolder>().OnBand();
         }
     }
 }

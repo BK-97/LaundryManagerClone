@@ -18,21 +18,20 @@ public class SceneChangerButton : MonoBehaviour
     }
     private void OnEnable()
     {
-        EventManager.OnProductArriveNextSceneButton.AddListener(ImagePump);
         LevelManager.Instance.OnLevelStart.AddListener(SetUIPos);
+        EventManager.OnProductChangeBand.AddListener(ImagePump);
     }
     private void OnDisable()
     {
-        EventManager.OnProductArriveNextSceneButton.RemoveListener(ImagePump);
         LevelManager.Instance.OnLevelStart.RemoveListener(SetUIPos);
-
+        EventManager.OnProductChangeBand.RemoveListener(ImagePump);
     }
-    public void ImagePump(GameObject test)
+    private void ImagePump()
     {
         Vector3 currentScale = button.transform.localScale;
         button.transform.DOPunchScale(currentScale * 1.01f, 0.2f);
     }
-    public void ChangeScene()
+    private void ChangeScene()
     {
         if (!isColorScene)
         {

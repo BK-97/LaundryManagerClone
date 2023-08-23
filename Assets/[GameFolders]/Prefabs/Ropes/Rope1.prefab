@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 774628214645267479}
   - component: {fileID: 2125609146147155020}
   - component: {fileID: 51174403946120686}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BezierCircle.510
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 4765034839258666571}
   - component: {fileID: 6080123424018550581}
   - component: {fileID: 6855920692256050688}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BezierCircle.508
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 279116248749790210}
   - component: {fileID: 3363200910548627729}
   - component: {fileID: 7372600596550928781}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BezierCircle.516
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 6230078421170978419}
   - component: {fileID: 8711607085414919466}
   - component: {fileID: 2761440977909734688}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Rope1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -354,7 +354,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaa5efa76828c2f428f29274e6f43916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holder: {fileID: 0}
+  productType: 0
+  colorType: 0
 --- !u!1 &5151488424508382166
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,7 +367,7 @@ GameObject:
   - component: {fileID: 5582277410404507290}
   - component: {fileID: 1268428220146974008}
   - component: {fileID: 9106921027261636031}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BezierCircle.515
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -449,7 +450,7 @@ GameObject:
   - component: {fileID: 6125862480397807709}
   - component: {fileID: 7274222463142251072}
   - component: {fileID: 5968443524208166507}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BezierCircle.512
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -532,7 +533,7 @@ GameObject:
   - component: {fileID: 9119855613723559340}
   - component: {fileID: 5737545630536613461}
   - component: {fileID: 788557667812160368}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BezierCircle.509
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -615,7 +616,7 @@ GameObject:
   - component: {fileID: 3198353897746394975}
   - component: {fileID: 5658028041236102644}
   - component: {fileID: 1601605315533951212}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BezierCircle.511
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -698,7 +699,7 @@ GameObject:
   - component: {fileID: 8935174700658316479}
   - component: {fileID: 428003439888005265}
   - component: {fileID: 4637452253779181133}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BezierCircle.513
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -781,7 +782,7 @@ GameObject:
   - component: {fileID: 880296251050622161}
   - component: {fileID: 424971063550684514}
   - component: {fileID: 4448239083498814614}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BezierCircle.514
   m_TagString: Untagged
   m_Icon: {fileID: 0}

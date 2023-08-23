@@ -14,10 +14,9 @@ public class ColorBoiler : MonoBehaviour, ISelectable,IProcessor
     public Transform productTransform;
     public int addWorth;
     public Slider timerSlider;
-    private EnumTypes.ProductTypes currentProductType;
 
     [Header("ColorBoiler Params")]
-    private GameObject processingProduct;
+    private ProductHolder processingProduct;
 
     [Header("Serializefields")]
     [SerializeField]
@@ -74,9 +73,9 @@ public class ColorBoiler : MonoBehaviour, ISelectable,IProcessor
         get => _onProcess;
         set { _onProcess = value; }
     }
-    public void GetProduct(EnumTypes.ProductTypes productType,EnumTypes.ColorTypes colorType)
+    public void GetProduct(ProductHolder proHolder)
     {
-        currentProductType = productType;
+        processingProduct = proHolder;
         ProcessStart();
 
     }
@@ -91,11 +90,13 @@ public class ColorBoiler : MonoBehaviour, ISelectable,IProcessor
         timerSlider.gameObject.SetActive(true);
         timerSlider.maxValue = processTime;
         timerSlider.value = 0;
-        Vector3 instantiatePos = produceSpot.position;
-        Quaternion instantiateRot = produceSpot.rotation;
-        processingProduct = PoolingSystem.Instance.InstantiateAPS("ProductHolder", instantiatePos, instantiateRot);
-        ProductHolder productHolder = processingProduct.GetComponent<ProductHolder>();
-        productHolder.SetInfo(currentProductType,ColorType,addWorth);
+
+        processingProduct.gameObject.transform.position = produceSpot.position;
+        processingProduct.gameObject.transform.rotation = produceSpot.rotation;
+        processingProduct.currentProduct.gameObject.transform.localPosition = Vector3.zero;
+        processingProduct.currentProduct.gameObject.transform.localRotation = Quaternion.identity;
+
+        processingProduct.SetInfo(processingProduct.currentProduct.GetComponent<ProductController>().productType, ColorType,addWorth);
         OnProcess = true;
 
     }

@@ -10,8 +10,7 @@ public class EventManager : MonoBehaviour
     public static UnityEvent OnChangeModel = new UnityEvent();
     public static UnityEvent OnLevelDataChange = new UnityEvent();
     public static UnityEvent OnPlayerDataChange = new UnityEvent();
-    public static GameObjectEvent OnProductArriveNextSceneButton = new GameObjectEvent();
-    public static UnityEvent OnRawMatEnd = new UnityEvent();
+    public static UnityEvent OnProductChangeBand = new UnityEvent();
     
 }
 public class BoolEvent : UnityEvent<bool> { }

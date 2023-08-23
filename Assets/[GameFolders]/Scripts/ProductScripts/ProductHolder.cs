@@ -70,12 +70,15 @@ public class ProductHolder : MonoBehaviour,ISelectable
             currentProduct.SetActive(true);
         }
     }
-    public void ReadyOnBand()
+    public void OnBand()
     {
-        Debug.Log("12");
+        CircleImage.gameObject.transform.localScale = Vector3.one;
         CircleImage.enabled = true;
     }
-
+    public void OutBand()
+    {
+        CircleImage.enabled = false;
+    }
     private void BrightColor()
     {
         CircleImage.color = Color.green;
@@ -88,10 +91,11 @@ public class ProductHolder : MonoBehaviour,ISelectable
     {
         transform.DOPunchScale(Vector3.one*0.1f,0.3f);
     }
-    public void Demolish()
+    public void CircleImageScale()
     {
         Fade();
-        CircleImage.gameObject.transform.DOScale(Vector3.zero,0.2f).OnComplete(DemolishEnd);
+        Vector3 newScale = Vector3.zero;
+        CircleImage.gameObject.transform.DOScale(newScale, 0.2f);
     }
     public void DemolishEnd()
     {

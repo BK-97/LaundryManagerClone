@@ -16,6 +16,9 @@ public class SelectController : MonoBehaviour
     }
     private void TapDown()
     {
+        if (!LevelManager.Instance.IsLevelStarted)
+            return;
+
         GameObject selectedObject = GetTappedObject();
         if (selectedObject == null)
             return;
