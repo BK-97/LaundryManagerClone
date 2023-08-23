@@ -169,9 +169,9 @@ public class PoolingSystem : Singleton<PoolingSystem>
         //clone.transform.localScale = Vector3.one;
         clone.transform.SetParent(transform);
 
-        IPoolable poolable = clone.GetComponent<IPoolable>();
-        if (poolable != null)
-            poolable.Dispose();
+        //IPoolable poolable = clone.GetComponent<IPoolable>();
+        //if (poolable != null)
+        //    poolable.Dispose();
         clone.SetActive(false);
     }
 

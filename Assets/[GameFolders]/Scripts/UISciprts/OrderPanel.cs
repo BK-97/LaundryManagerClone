@@ -22,6 +22,7 @@ public class OrderPanel : PanelBase
     public void SetOrders()
     {
         ShowPanel();
+        OrderManager.Instance.orderPanel = this;
         currentOrders = OrderManager.Instance.GetOrderInfo();
         for (int i = 0; i < currentOrders.Count; i++)
         {
@@ -35,11 +36,20 @@ public class OrderPanel : PanelBase
     }
     private void ImageSet(EnumTypes.ProductTypes proType,EnumTypes.ColorTypes colorType)
     {
-        Debug.Log(OrderIcons[currentIndex].orderIcon.sprite.name);
-        OrderIcons[currentIndex].orderIcon.sprite = OrderManager.Instance.GetProductSprite(proType);
-        OrderIcons[currentIndex].orderIcon.color = ColorManager.Instance.GetColorCode(colorType);
-       
+        OrderIcons[currentIndex].SetInfo(proType, colorType);
         currentIndex++;
     }
-  
+    public Vector3 GetOrderPos(EnumTypes.ProductTypes proType, EnumTypes.ColorTypes colorType)
+    {
+        for (int i = 0; i < OrderIcons.Count; i++)
+        {
+            if (OrderIcons[i].proType == proType && OrderIcons[i].colorType == colorType)
+                return OrderIcons[i].GetPos();
+        }
+        return Vector3.zero;
+    }
+    public void OrderArrived()
+    {
+
+    }
 }

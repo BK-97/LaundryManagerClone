@@ -1,17 +1,54 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class OrderManager : Singleton<OrderManager>
 {
     public List<Sprite> ProductImages;
-    private int currentLevel;
+    private int currentOrderIndex;
     [SerializeField]
     public List<OrderList> orderLists = new List<OrderList>();
+    [HideInInspector]
+    public OrderPanel orderPanel;
+
+    public int orderAddWorth=100;
+    public static UnityEvent OnOrderCompleted = new UnityEvent();
 
     public List<OrderList.Order> GetOrderInfo()
     {
-        return orderLists[currentLevel].orders;
+        return orderLists[currentOrderIndex].orders;
+    }
+    private void OnEnable()
+    {
+        OnOrderCompleted.AddListener(OrderCompleted);
+    }
+    private void OnDisable()
+    {
+        OnOrderCompleted.RemoveListener(OrderCompleted);
+    }
+    private void OrderCompleted()
+    {
+
+        currentOrderIndex++;
+    }
+    public void IsOrdered(ProductController product)
+    {
+        for (int i = 0; i < orderPanel.currentOrders.Count; i++)
+        {
+            if (orderPanel.currentOrders[i].ProductType == product.productType)
+            {
+                if (orderPanel.currentOrders[i].ColorType == product.colorType)
+                {
+                    product.ProductWorth += orderAddWorth;
+                    product.MoveUI(orderPanel.GetOrderPos(product.productType, product.colorType));
+                    break;
+                }
+            }
+            
+        }
+        product.BecomeFloadingUI();
+        
     }
     public Sprite GetProductSprite(EnumTypes.ProductTypes product)
     {
@@ -38,7 +75,6 @@ public class OrderManager : Singleton<OrderManager>
             default:
                 break;
         }
-        Debug.Log(spriteIndex);
 
         return ProductImages[spriteIndex];
 

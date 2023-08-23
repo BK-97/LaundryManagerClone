@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4256194554914520275}
   - component: {fileID: 1613108570904172992}
   - component: {fileID: 6817933014524535132}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BezierCircle.516
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 778820000747666276}
   - component: {fileID: 6026662339610792575}
   - component: {fileID: 6985037796950479420}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6447511769506145268}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ProduceSpot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 99278075686752380}
   - component: {fileID: 6527487267284232543}
   - component: {fileID: 7394864765090984461}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: LockCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -303,7 +303,7 @@ GameObject:
   - component: {fileID: 8858115557451071130}
   - component: {fileID: 7831307647269513188}
   - component: {fileID: 7488231989658052305}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BezierCircle.508
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -386,7 +386,7 @@ GameObject:
   - component: {fileID: 3485547234711500731}
   - component: {fileID: 166628154573492570}
   - component: {fileID: 3696648729287292050}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: ProductIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -462,7 +462,7 @@ GameObject:
   - component: {fileID: 8101816798856011762}
   - component: {fileID: 8051327511981650060}
   - component: {fileID: 8385109583135893127}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: needle.020
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -545,7 +545,7 @@ GameObject:
   - component: {fileID: 3606992543982154950}
   - component: {fileID: 2716016490930816157}
   - component: {fileID: 4069945657420016959}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BezierCircle.510
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -628,7 +628,7 @@ GameObject:
   - component: {fileID: 4468585193857524558}
   - component: {fileID: 5177696685169794790}
   - component: {fileID: 8662243742358686801}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: LockText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -677,7 +677,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -763,7 +763,7 @@ GameObject:
   - component: {fileID: 8832552081558668202}
   - component: {fileID: 5983636038118333556}
   - component: {fileID: 4867096631938273553}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -813,7 +813,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -842,7 +842,7 @@ GameObject:
   - component: {fileID: 2500747408426836556}
   - component: {fileID: 7711091280276946403}
   - component: {fileID: 3933669518733094364}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SweingMachine02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -948,7 +948,8 @@ MonoBehaviour:
   _isSelected: 0
   _isLocked: 1
   LockImage: {fileID: 4867096631938273553}
-  ProductIcon: {fileID: 735731286957034456}
+  ProductIconHolder: {fileID: 735731286957034456}
+  ProductIcon: {fileID: 3696648729287292050}
   lockText: {fileID: 8662243742358686801}
   stars: {fileID: 4189248052417061663}
   clouds: {fileID: 2375480491507836660}
@@ -976,7 +977,7 @@ GameObject:
   - component: {fileID: 5384070914420641779}
   - component: {fileID: 5610223874444723945}
   - component: {fileID: 1856789942315977603}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BezierCurve.020
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1057,7 +1058,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3955794889780435196}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1092,7 +1093,7 @@ GameObject:
   - component: {fileID: 7582075972966605943}
   - component: {fileID: 9182722525647142212}
   - component: {fileID: 735731286957034456}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: ProduceIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1170,7 +1171,7 @@ GameObject:
   - component: {fileID: 1489637280163039118}
   - component: {fileID: 8524133617523709221}
   - component: {fileID: 3383504412241803325}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BezierCircle.511
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1253,7 +1254,7 @@ GameObject:
   - component: {fileID: 4958052895060606062}
   - component: {fileID: 4412971307714449472}
   - component: {fileID: 8688884708428437148}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BezierCircle.513
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1336,7 +1337,7 @@ GameObject:
   - component: {fileID: 3817332971734438912}
   - component: {fileID: 4407713641338946995}
   - component: {fileID: 393437397688276039}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BezierCircle.514
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1420,7 +1421,7 @@ GameObject:
   - component: {fileID: 3768165694688048}
   - component: {fileID: 1418547305382775063}
   - component: {fileID: 4689086248162905664}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: ProductCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1520,7 +1521,7 @@ GameObject:
   - component: {fileID: 6009534230777371668}
   - component: {fileID: 8588735126460735393}
   - component: {fileID: 5234501109414290362}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1596,7 +1597,7 @@ GameObject:
   - component: {fileID: 5070675528101178749}
   - component: {fileID: 8597740575940040324}
   - component: {fileID: 3620632275973987233}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BezierCircle.509
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1677,7 +1678,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8859633231229065120}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Needle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1712,7 +1713,7 @@ GameObject:
   - component: {fileID: 7912256795079727244}
   - component: {fileID: 6646660010047054481}
   - component: {fileID: 7645633432567705274}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BezierCircle.512
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1795,7 +1796,7 @@ GameObject:
   - component: {fileID: 640796438990401689}
   - component: {fileID: 9013243904384253788}
   - component: {fileID: 4594091544887906460}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube.130
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1876,7 +1877,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3841874438938668848}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ProductGet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1910,7 +1911,7 @@ GameObject:
   - component: {fileID: 7979036631759591074}
   - component: {fileID: 4623873720715986427}
   - component: {fileID: 1131538798597761948}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cylinder.029
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2024,7 +2025,7 @@ GameObject:
   - component: {fileID: 6138381612623948390}
   - component: {fileID: 2229161198676319303}
   - component: {fileID: 4762035673902865402}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube.129
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2107,7 +2108,7 @@ GameObject:
   - component: {fileID: 8482159778837952075}
   - component: {fileID: 2978225587729208809}
   - component: {fileID: 5092687953395971438}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BezierCircle.515
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2190,6 +2191,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SmokeExplosionWhite
       objectReference: {fileID: 0}
+    - target: {fileID: 153256, guid: fe394d041df1a0547990f49cf653249f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 160968, guid: fe394d041df1a0547990f49cf653249f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 443696, guid: fe394d041df1a0547990f49cf653249f, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2255,9 +2264,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3955794889780435196}
     m_Modifications:
+    - target: {fileID: 109936, guid: 07014c6862cc6bd4facec707d0923fe2, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 186908, guid: 07014c6862cc6bd4facec707d0923fe2, type: 3}
       propertyPath: m_Name
       value: StarFieldSimple
+      objectReference: {fileID: 0}
+    - target: {fileID: 186908, guid: 07014c6862cc6bd4facec707d0923fe2, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 468366, guid: 07014c6862cc6bd4facec707d0923fe2, type: 3}
       propertyPath: m_RootOrder

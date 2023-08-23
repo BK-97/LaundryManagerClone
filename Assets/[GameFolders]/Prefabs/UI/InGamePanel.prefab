@@ -289,7 +289,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Level 1
+  m_text: Day 1!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6cfd4b52cf4724ec4866ba51253f2a86, type: 2}
   m_sharedMaterial: {fileID: -4943439861959341739, guid: 6cfd4b52cf4724ec4866ba51253f2a86,
@@ -317,7 +317,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40.1
+  m_fontSize: 45.35
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -453,6 +453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d92826b2a7259cc4db1825485496a36d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvasGroup: {fileID: 0}
 --- !u!225 &7679247699097953598
 CanvasGroup:
   m_ObjectHideFlags: 0

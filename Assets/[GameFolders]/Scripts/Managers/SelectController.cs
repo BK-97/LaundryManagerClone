@@ -39,7 +39,10 @@ public class SelectController : MonoBehaviour
         if (processor.OnProcess)
             return;
         if (processor.IsLocked)
+        {
+            processor.ProcessorUnlock();
             return;
+        }
         if (selectedProduct == null)
             return;
 

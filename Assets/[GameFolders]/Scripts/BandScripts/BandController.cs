@@ -6,43 +6,28 @@ public class BandController : MonoBehaviour
 {
     public List<Transform> HolderPoints;
     public List<GameObject> Holders;
-    private void Start()
-    {
-        for (int i = 0; i < 3; i++)
-        {
-            var go = PoolingSystem.Instance.InstantiateAPS("ProductHolder");
-            go.GetComponent<ProductHolder>().SetInfo(EnumTypes.ProductTypes.Socks,EnumTypes.ColorTypes.None,0);
-            Holders.Add(go);
-            Holders[i].transform.position = HolderPoints[i].position;
-            Holders[i].transform.rotation = HolderPoints[i].rotation;
-            go.GetComponent<ProductHolder>().ReadyOnBand();
-
-        }
-    }
+    public bool colorBoil;
     private void OnEnable()
     {
-        EventManager.OnProductArriveNextSceneButton.AddListener(SortHolders);
+        EventManager.OnProductArriveNextSceneButton.AddListener(RemoveHolder);
     }
     private void OnDisable()
     {
-        EventManager.OnProductArriveNextSceneButton.RemoveListener(SortHolders);
+        EventManager.OnProductArriveNextSceneButton.RemoveListener(RemoveHolder);
     }
     public void SortHolders()
     {
+
         for (int i = 0; i < Holders.Count; i++)
         {
             float distance = Vector3.Distance(Holders[i].transform.position, HolderPoints[i].position);
             if (distance > 0.1f)
                 Holders[i].GetComponent<ProductHolder>().MovePoint(HolderPoints[i].position);
         }
+
     }
     public void AddHolder(GameObject newHolder)
     {
-        if (Holders.Count == 3)
-        {
-            PoolingSystem.Instance.DestroyAPS(newHolder);
-            return;
-        }
         Holders.Add(newHolder);
         newHolder.GetComponent<ProductHolder>().ReadyOnBand();
         SortHolders();
@@ -56,6 +41,8 @@ public class BandController : MonoBehaviour
                 Holders.Remove(removeHolder);
             }
         }
+        if (Holders.Count == 0)
+            EventManager.OnRawMatEnd.Invoke();
         SortHolders();
     }
 }

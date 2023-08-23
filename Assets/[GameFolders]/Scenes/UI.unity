@@ -607,8 +607,25 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6834420679952867671, guid: 431a68c5a86a94f458b29a3188daeff4,
+        type: 3}
+      propertyPath: buttonText
+      value: 
+      objectReference: {fileID: 3160109968665839831}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 431a68c5a86a94f458b29a3188daeff4, type: 3}
+--- !u!114 &3160109968665839831 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3160109969348793814, guid: 431a68c5a86a94f458b29a3188daeff4,
+    type: 3}
+  m_PrefabInstance: {fileID: 3160109968665839830}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3564161958746959965
 PrefabInstance:
   m_ObjectHideFlags: 0

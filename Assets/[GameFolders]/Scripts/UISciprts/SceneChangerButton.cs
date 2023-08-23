@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using TMPro;
 public class SceneChangerButton : MonoBehaviour
 {
     public Button button;
     private Vector3 offSet;
+    public TextMeshProUGUI buttonText;
     bool isColorScene;
     private void SetUIPos()
     {
@@ -25,23 +27,24 @@ public class SceneChangerButton : MonoBehaviour
         LevelManager.Instance.OnLevelStart.RemoveListener(SetUIPos);
 
     }
-    public void ImagePump()
+    public void ImagePump(GameObject test)
     {
         Vector3 currentScale = button.transform.localScale;
         button.transform.DOPunchScale(currentScale * 1.01f, 0.2f);
     }
     public void ChangeScene()
     {
-        Debug.Log("1");
         if (!isColorScene)
         {
             CameraController.OnColorOpen.Invoke();
+            buttonText.text = "SEW";
             isColorScene = true;
             return;
         }
         else
         {
             CameraController.OnSewOpen.Invoke();
+            buttonText.text = "PAINT";
             isColorScene = false;
         }
 

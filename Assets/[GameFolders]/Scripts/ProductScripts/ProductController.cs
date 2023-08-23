@@ -6,8 +6,10 @@ public class ProductController : MonoBehaviour,IProduct
 {
     #region Params
     public ProductHolder holder;
-    private EnumTypes.ProductTypes _productType;
-    private EnumTypes.ColorTypes _colorType;
+    [HideInInspector]
+    public EnumTypes.ProductTypes productType;
+    [HideInInspector]
+    public EnumTypes.ColorTypes colorType;
     private int _worth;
     public int ProductWorth { get => _worth; set => _worth = value; }
     #endregion
@@ -15,8 +17,8 @@ public class ProductController : MonoBehaviour,IProduct
     public void SetInfo(EnumTypes.ProductTypes proType, EnumTypes.ColorTypes colorType, int addWorth)
     {
         ProductWorth += addWorth;
-        _productType = proType;
-        _colorType = colorType;
+        productType = proType;
+        this.colorType = colorType;
 
     }
     public void MoveProcess(IProcessor processor)
@@ -29,8 +31,11 @@ public class ProductController : MonoBehaviour,IProduct
     public void MoveProcessEnd(IProcessor processor)
     {
         holder.Demolish();
-        processor.GetProduct(_productType,_colorType);
-        PoolingSystem.Instance.DestroyAPS(gameObject);
+        processor.GetProduct(productType,colorType);
+        transform.localPosition = Vector3.zero;
+        transform.localRotation = Quaternion.identity;
+        PoolingSystem.Instance.DestroyAPS(holder.gameObject);
+
     }
     public void MoveNextProcess()
     {
@@ -40,15 +45,29 @@ public class ProductController : MonoBehaviour,IProduct
     }
     public void Sell()
     {
-        ExchangeManager.Instance.AddCurrency(CurrencyType.Cash,300);
-        Destroy(gameObject);
+        OrderManager.Instance.IsOrdered(this);
     }
     #endregion
     #region MyMethods
+
+    public void BecomeFloadingUI()
+    {
+        ExchangeManager.Instance.AddCurrency(CurrencyType.Cash, ProductWorth); //bu kýsým FloadingUI da olacak
+        PoolingSystem.Instance.DestroyAPS(holder.gameObject);
+    }
+    public void MoveUI(Vector3 UIPos)
+    {
+        transform.DOMove(UIPos,1).OnComplete(UICheck);
+    }
+    private void UICheck()
+    {
+        OrderManager.Instance.orderPanel.OrderArrived();
+        BecomeFloadingUI();
+    }
     private void ProductNextScene()
     {
-        PoolingSystem.Instance.DestroyAPS(gameObject);
-        EventManager.OnProductArriveNextSceneButton.Invoke();
+        EventManager.OnProductArriveNextSceneButton.Invoke(holder.gameObject);
+        PoolingSystem.Instance.DestroyAPS(holder.gameObject);
     }
 
     #endregion

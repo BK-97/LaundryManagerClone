@@ -37,6 +37,7 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
 
     [Header("UI")]
     public Image LockImage;
+    public Image ProductIconHolder;
     public Image ProductIcon;
     public TextMeshProUGUI lockText;
 
@@ -56,7 +57,6 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
     {
         if (isSelected)
             return;
-        Debug.Log("Machine Selected");
         isSelected = true;
         Deselected();
     }
@@ -64,7 +64,6 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
     {
         if (!isSelected)
             return;
-        Debug.Log("Machine DeSelected");
 
         isSelected = false;
     }
@@ -130,15 +129,27 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
     }
     IEnumerator IconColorCO()
     {
-        Color cacheColor = ProductIcon.color;
-        ProductIcon.color = Color.green;
+        Color cacheColor = ProductIconHolder.color;
+        ProductIconHolder.color = Color.green;
         yield return new WaitForSeconds(1.5f);
-        ProductIcon.color = cacheColor;
+        ProductIconHolder.color = cacheColor;
     }
     public void ProcessorUnlock()
     {
-        LockImage.gameObject.SetActive(false);
-        IsLocked = false;
+        if (LevelManager.Instance.currentDay >= unlockLevel)
+        {
+
+            if (ExchangeManager.Instance.GetCurrency(CurrencyType.Cash) >= unlockCost)
+            {
+                ProductIconHolder.gameObject.SetActive(true);
+                ProductIcon.sprite = OrderManager.Instance.GetProductSprite(ProductionType);
+                ExchangeManager.Instance.UseCurrency(CurrencyType.Cash, unlockCost);
+                //unlock fx
+                LockImage.gameObject.SetActive(false);
+                IsLocked = false;
+            }
+        }
+
     }
     #endregion
     #region MyMethods
@@ -147,16 +158,19 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
         OnProcess = false;
 
         if (!IsLocked)
+        {
             ProcessorUnlock();
+        }
         else
         {
-            if (unlockLevel != 0)
+            ProductIconHolder.gameObject.SetActive(false);
+            if (unlockLevel > LevelManager.Instance.currentDay)
                 lockText.text = "Level "+unlockLevel.ToString();
             else
                 lockText.text = unlockCost.ToString();
 
         }
-
+        
         ropeRoll.gameObject.SetActive(false);
 
     }

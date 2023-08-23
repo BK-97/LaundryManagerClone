@@ -72,6 +72,7 @@ public class ProductHolder : MonoBehaviour,ISelectable
     }
     public void ReadyOnBand()
     {
+        Debug.Log("12");
         CircleImage.enabled = true;
     }
 

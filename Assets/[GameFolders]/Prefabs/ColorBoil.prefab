@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2026846564634801841}
   - component: {fileID: 1803158244628026754}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1582501523291591724}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 341027412520133269}
   - component: {fileID: 8086485114350425788}
   - component: {fileID: 6787795996491166598}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ColorBoil
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +201,6 @@ MonoBehaviour:
   _isSelected: 0
   _isLocked: 1
   LockImage: {fileID: 5610388193757763148}
-  ProductIcon: {fileID: 0}
   stars: {fileID: 1366475677423870014}
   clouds: {fileID: 3403189914550892820}
 --- !u!1 &3320820133645362588
@@ -215,7 +214,7 @@ GameObject:
   - component: {fileID: 404367618035432896}
   - component: {fileID: 5069423705387610642}
   - component: {fileID: 2791895243255625412}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -289,7 +288,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7205051963775445867}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ProduceSpot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -323,7 +322,7 @@ GameObject:
   - component: {fileID: 2476011770903511907}
   - component: {fileID: 313086984891776573}
   - component: {fileID: 8116514970228038384}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -422,7 +421,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6827337286801170661}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ProductGetSpot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -455,7 +454,7 @@ GameObject:
   - component: {fileID: 4030347242207078291}
   - component: {fileID: 8768077692392710141}
   - component: {fileID: 8678338432775704754}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -531,7 +530,7 @@ GameObject:
   - component: {fileID: 1056080083526302339}
   - component: {fileID: 463933064353095930}
   - component: {fileID: 5610388193757763148}
-  m_Layer: 5
+  m_Layer: 6
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -603,9 +602,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 341027412520133269}
     m_Modifications:
+    - target: {fileID: 109936, guid: 07014c6862cc6bd4facec707d0923fe2, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 186908, guid: 07014c6862cc6bd4facec707d0923fe2, type: 3}
       propertyPath: m_Name
       value: StarFieldSimple
+      objectReference: {fileID: 0}
+    - target: {fileID: 186908, guid: 07014c6862cc6bd4facec707d0923fe2, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 468366, guid: 07014c6862cc6bd4facec707d0923fe2, type: 3}
       propertyPath: m_RootOrder
@@ -675,6 +682,14 @@ PrefabInstance:
     - target: {fileID: 153256, guid: fe394d041df1a0547990f49cf653249f, type: 3}
       propertyPath: m_Name
       value: SmokeExplosionWhite
+      objectReference: {fileID: 0}
+    - target: {fileID: 153256, guid: fe394d041df1a0547990f49cf653249f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 160968, guid: fe394d041df1a0547990f49cf653249f, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 443696, guid: fe394d041df1a0547990f49cf653249f, type: 3}
       propertyPath: m_RootOrder
@@ -811,10 +826,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6613706735875894313, guid: cbe4fe58f02881443977498e9a52dfff,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: cbe4fe58f02881443977498e9a52dfff,
         type: 3}
       propertyPath: m_Name
       value: Melt_Station
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cbe4fe58f02881443977498e9a52dfff,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6978029860847844781, guid: cbe4fe58f02881443977498e9a52dfff,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbe4fe58f02881443977498e9a52dfff, type: 3}
