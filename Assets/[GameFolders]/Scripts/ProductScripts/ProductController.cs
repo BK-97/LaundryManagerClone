@@ -41,14 +41,18 @@ public class ProductController : MonoBehaviour,IProduct
     }
     public void Sell()
     {
-        OrderManager.Instance.IsOrdered(this);
+        ShowToCamera();
     }
     #endregion
     #region MyMethods
-
+    private void ShowToCamera()
+    {
+        Vector3 movePos = Camera.main.transform.position+new Vector3(0,0, 1);
+        Holder.gameObject.transform.DOMove(movePos,1).OnComplete(()=> OrderManager.Instance.IsOrdered(this));
+    }
     public void BecomeFloadingUI()
     {
-        ExchangeManager.Instance.AddCurrency(CurrencyType.Cash, ProductWorth); //bu kýsým FloadingUI da olacak
+        EventManager.OnExcangeInstantiate.Invoke(transform.position,ProductWorth);
         PoolingSystem.Instance.DestroyAPS(Holder.gameObject);
     }
     public void MoveUI(Vector3 UIPos)

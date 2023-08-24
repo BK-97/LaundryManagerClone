@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FakeBra : MonoBehaviour, IFakeProduct
 {
-    public void StartColorChange(float processTime)
+    public void StartColorChange(float processTime, Color newColor)
     {
         throw new System.NotImplementedException();
     }

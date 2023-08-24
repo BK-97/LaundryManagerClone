@@ -612,6 +612,11 @@ PrefabInstance:
       propertyPath: buttonText
       value: 
       objectReference: {fileID: 3160109968665839831}
+    - target: {fileID: 7679247699097953598, guid: 431a68c5a86a94f458b29a3188daeff4,
+        type: 3}
+      propertyPath: m_Alpha
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 431a68c5a86a94f458b29a3188daeff4, type: 3}
 --- !u!114 &3160109968665839831 stripped

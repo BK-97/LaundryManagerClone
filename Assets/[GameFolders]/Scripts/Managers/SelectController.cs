@@ -37,6 +37,14 @@ public class SelectController : MonoBehaviour
             CalculateSelectedProcessor(processor,selected);
 
     }
+    public void ResetSelect()
+    {
+        if (selectedProduct == null)
+            return;
+
+        selectedProduct.GetComponent<ISelectable>().Deselected();
+        selectedProduct = null;
+    }
     private void CalculateSelectedProcessor(IProcessor processor, ISelectable selectable)
     {
         if (processor.OnProcess)

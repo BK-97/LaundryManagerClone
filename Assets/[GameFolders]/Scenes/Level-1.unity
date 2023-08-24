@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: SewCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -288,8 +288,8 @@ GameObject:
   - component: {fileID: 379442369}
   - component: {fileID: 379442368}
   m_Layer: 0
-  m_Name: Main Camera
-  m_TagString: MainCamera
+  m_Name: ColorCamera
+  m_TagString: SecondCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -676,8 +676,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c999884c7e2521846894f760b7f6dd59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorScene: {fileID: 379442366}
-  sewScene: {fileID: 330585543}
+  colorCamera: {fileID: 379442366}
+  sewCamera: {fileID: 330585543}
 --- !u!1 &730232918
 GameObject:
   m_ObjectHideFlags: 0
@@ -830,6 +830,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -15.916
+      objectReference: {fileID: 0}
+    - target: {fileID: 2520522494930862275, guid: 135d5dcd374447c4686c74b178083e2d,
+        type: 3}
+      propertyPath: ColorType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2520522494930862275, guid: 135d5dcd374447c4686c74b178083e2d,
+        type: 3}
+      propertyPath: processTime
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2520522494930862275, guid: 135d5dcd374447c4686c74b178083e2d,
+        type: 3}
+      propertyPath: unlockLevel
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3600478387511960579, guid: 135d5dcd374447c4686c74b178083e2d,
+        type: 3}
+      propertyPath: ColorType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3600478387511960579, guid: 135d5dcd374447c4686c74b178083e2d,
+        type: 3}
+      propertyPath: processTime
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3600478387511960579, guid: 135d5dcd374447c4686c74b178083e2d,
+        type: 3}
+      propertyPath: unlockLevel
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3715571136242953554, guid: 135d5dcd374447c4686c74b178083e2d,
         type: 3}
@@ -1149,13 +1179,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2520522494930862275, guid: 135d5dcd374447c4686c74b178083e2d,
         type: 3}
+      propertyPath: ColorType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2520522494930862275, guid: 135d5dcd374447c4686c74b178083e2d,
+        type: 3}
       propertyPath: _isLocked
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2520522494930862275, guid: 135d5dcd374447c4686c74b178083e2d,
+        type: 3}
+      propertyPath: unlockCost
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 2520522494930862275, guid: 135d5dcd374447c4686c74b178083e2d,
+        type: 3}
+      propertyPath: processTime
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2520522494930862275, guid: 135d5dcd374447c4686c74b178083e2d,
+        type: 3}
+      propertyPath: unlockLevel
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3600478387511960579, guid: 135d5dcd374447c4686c74b178083e2d,
         type: 3}
       propertyPath: _isLocked
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3600478387511960579, guid: 135d5dcd374447c4686c74b178083e2d,
+        type: 3}
+      propertyPath: processTime
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3813471047233742236, guid: 135d5dcd374447c4686c74b178083e2d,
         type: 3}

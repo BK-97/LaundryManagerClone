@@ -168,6 +168,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orderIcon: {fileID: 1926711018341806492}
+  backGround: {fileID: 2577739781785931478}
+  proType: 0
+  colorType: 0
 --- !u!1 &7311372421590611438
 GameObject:
   m_ObjectHideFlags: 0

@@ -34,20 +34,21 @@ public class OrderManager : Singleton<OrderManager>
     }
     public void IsOrdered(ProductController product)
     {
+        bool isOrdered=false;
         for (int i = 0; i < orderPanel.currentOrders.Count; i++)
         {
             if (orderPanel.currentOrders[i].ProductType == product.productType)
             {
                 if (orderPanel.currentOrders[i].ColorType == product.colorType)
                 {
+                    isOrdered = true;
                     product.ProductWorth += orderAddWorth;
                     product.MoveUI(orderPanel.GetOrderPos(product.productType, product.colorType));
-                    break;
                 }
             }
-            
         }
-        product.BecomeFloadingUI();
+        if(!isOrdered)
+            product.BecomeFloadingUI();
         
     }
     public Sprite GetProductSprite(EnumTypes.ProductTypes product)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using TMPro;
 public class ColorBoiler : MonoBehaviour, ISelectable,IProcessor
 {
     #region Params
@@ -13,10 +14,13 @@ public class ColorBoiler : MonoBehaviour, ISelectable,IProcessor
     public Transform produceSpot;
     public Transform productTransform;
     public int addWorth;
-    public Slider timerSlider;
+    public int unlockLevel;
+    public int unlockCost;
 
     [Header("ColorBoiler Params")]
     private ProductHolder processingProduct;
+    public MeshRenderer boilColorMesh;
+    public Slider timerSlider;
 
     [Header("Serializefields")]
     [SerializeField]
@@ -29,10 +33,12 @@ public class ColorBoiler : MonoBehaviour, ISelectable,IProcessor
 
     [Header("UI")]
     public Image LockImage;
+    public TextMeshProUGUI lockText;
 
     [Header("Particles")]
     public ParticleSystem stars;
     public ParticleSystem clouds;
+    public ParticleSystem particleRain;
 
     #endregion
     #region ISelectable
@@ -77,16 +83,13 @@ public class ColorBoiler : MonoBehaviour, ISelectable,IProcessor
     {
         processingProduct = proHolder;
         ProcessStart();
-
     }
-
     public Transform GetProductPlace()
     {
         return productTransform;
     }
     public void ProcessStart()
     {
-        Debug.Log("ProcessStart");
         timerSlider.gameObject.SetActive(true);
         timerSlider.maxValue = processTime;
         timerSlider.value = 0;
@@ -96,24 +99,40 @@ public class ColorBoiler : MonoBehaviour, ISelectable,IProcessor
         processingProduct.currentProduct.gameObject.transform.localPosition = Vector3.zero;
         processingProduct.currentProduct.gameObject.transform.localRotation = Quaternion.identity;
 
-        processingProduct.SetInfo(processingProduct.currentProduct.GetComponent<ProductController>().productType, ColorType,addWorth);
+        Color newColor = ColorManager.Instance.GetColorCode(ColorType);
+        processingProduct.currentProduct.GetComponent<IFakeProduct>().StartColorChange(processTime, newColor);
+        
         OnProcess = true;
 
     }
     public void ProcessEnd()
     {
         elapsedTime = 0.0f;
-        timerSlider.gameObject.SetActive(false);
-        OnProcess = false;
-        processingProduct.GetComponent<ProductHolder>().currentProduct.GetComponent<IProduct>().Sell();
+        _onProcess = false;
+        StartCoroutine(WaitForSendingProduct());
+        processingProduct.SetInfo(processingProduct.currentProduct.GetComponent<ProductController>().productType, ColorType, addWorth);
         stars.Play();
         clouds.Play();
+    }
+    IEnumerator WaitForSendingProduct()
+    {
+        yield return new WaitForSeconds(1.5f);
+        processingProduct.GetComponent<ProductHolder>().currentProduct.GetComponent<IProduct>().Sell();
     }
 
     public void ProcessorUnlock()
     {
-        LockImage.enabled = false;
-        IsLocked = false;
+        if (LevelManager.Instance.currentDay >= unlockLevel)
+        {
+            if (ExchangeManager.Instance.GetCurrency(CurrencyType.Cash) >= unlockCost)
+            {
+                ExchangeManager.Instance.UseCurrency(CurrencyType.Cash, unlockCost);
+                if (LevelManager.Instance.IsLevelStarted)
+                    particleRain.Play();
+                LockImage.gameObject.SetActive(false);
+                IsLocked = false;
+            }
+        }
     }
     public void ProcessUpdate()
     {
@@ -129,8 +148,19 @@ public class ColorBoiler : MonoBehaviour, ISelectable,IProcessor
     private void Start()
     {
         OnProcess = false;
+        Color liquidColor = ColorManager.Instance.GetColorCode(ColorType);
+        boilColorMesh.materials[1].color = liquidColor;
         if (!IsLocked)
+        {
             ProcessorUnlock();
+        }
+        else
+        {
+            if (unlockLevel > LevelManager.Instance.currentDay)
+                lockText.text = "Level " + unlockLevel.ToString();
+            else
+                lockText.text = unlockCost.ToString();
+        }
     }
     private void Update()
     {

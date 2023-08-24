@@ -5,13 +5,16 @@ using UnityEngine.Events;
 
 public class CameraController : MonoBehaviour
 {
-    public GameObject colorScene;
-    public GameObject sewScene;
+    public GameObject colorCamera;
+    public GameObject sewCamera;
     public static UnityEvent OnSewOpen = new UnityEvent();
     public static UnityEvent OnColorOpen = new UnityEvent();
+    private SelectController selectController;
 
     private void OnEnable()
     {
+        selectController = GetComponent<SelectController>();
+
         OnSewOpen.AddListener(OpenSewScene);
         OnColorOpen.AddListener(OpenColorScene);
     }
@@ -23,13 +26,19 @@ public class CameraController : MonoBehaviour
 
     private void OpenColorScene()
     {
-        colorScene.SetActive(true);
-        sewScene.SetActive(false);
+        selectController.ResetSelect();
+        colorCamera.SetActive(true);
+        colorCamera.tag = "MainCamera";
+        sewCamera.SetActive(false);
+        sewCamera.tag = "SecondCamera";
 
     }
     private void OpenSewScene()
     {
-        colorScene.SetActive(false);
-        sewScene.SetActive(true);
+        selectController.ResetSelect();
+        sewCamera.SetActive(true);
+        sewCamera.tag = "MainCamera";
+        colorCamera.SetActive(false);
+        colorCamera.tag = "SecondCamera";
     }
 }

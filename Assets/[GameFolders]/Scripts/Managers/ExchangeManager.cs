@@ -23,6 +23,7 @@ public class ExchangeManager : Singleton<ExchangeManager>
     }
     private void Start()
     {
+        PlayerPrefs.SetInt(PlayerPrefKeys.CurrentCash, 300);
         currencyDictionary[CurrencyType.Cash] = PlayerPrefs.GetInt(PlayerPrefKeys.CurrentCash, 300); //For Test
     }
     public void SetUIPos(Vector3 pos)

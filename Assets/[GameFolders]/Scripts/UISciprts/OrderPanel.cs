@@ -44,12 +44,17 @@ public class OrderPanel : PanelBase
         for (int i = 0; i < OrderIcons.Count; i++)
         {
             if (OrderIcons[i].proType == proType && OrderIcons[i].colorType == colorType)
-                return OrderIcons[i].GetPos();
+            {
+                Vector3 offSet = new Vector3(0, 0, -Camera.main.transform.position.z*2);
+                Vector3 worldPos = Camera.main.ScreenToWorldPoint(OrderIcons[i].orderIcon.transform.position + offSet);
+                return worldPos;
+            }
         }
         return Vector3.zero;
     }
+
     public void OrderArrived()
     {
-
+        OrderIcons[0].Arrived();
     }
 }

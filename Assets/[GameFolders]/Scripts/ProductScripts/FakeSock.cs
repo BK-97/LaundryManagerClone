@@ -7,12 +7,19 @@ public class FakeSock : MonoBehaviour, IFakeProduct
     float currentFloat;
     public MeshRenderer mesh;
     private Transform parentTransform;
-    private void Start()
+
+    public void StartColorChange(float processTime,Color newColor)
     {
-    }
-    public void StartColorChange(float processTime)
-    {
-        
+        Material[] materials = mesh.materials;
+
+        for (int i = 0; i < materials.Length; i++)
+        {
+            Material material = materials[i];
+
+            Color originalColor = material.GetColor("_BaseColor");
+
+            DOTween.To(() => material.GetColor("_BaseColor"), x => material.SetColor("_BaseColor", x), newColor, processTime);
+        }
     }
     public void StartUnDissolve(float processTime)
     {
