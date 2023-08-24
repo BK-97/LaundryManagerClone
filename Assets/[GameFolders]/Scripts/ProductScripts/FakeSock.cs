@@ -4,8 +4,9 @@ using UnityEngine;
 using DG.Tweening;
 public class FakeSock : MonoBehaviour, IFakeProduct
 {
-    float currentFloat;
     public MeshRenderer mesh;
+
+    private float currentFloat;
     private Transform parentTransform;
 
     public void StartColorChange(float processTime,Color newColor)

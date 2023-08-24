@@ -105,6 +105,7 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
         processingProduct.currentProduct.gameObject.transform.localRotation = Quaternion.identity;
 
         processingProduct.SetInfo(ProductionType,EnumTypes.ColorTypes.None, addWorth);
+
         processingProduct.currentProduct.GetComponent<IFakeProduct>().StartUnDissolve(processTime);
     }
     public void ProcessUpdate()

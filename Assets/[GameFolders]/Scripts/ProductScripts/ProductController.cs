@@ -68,6 +68,7 @@ public class ProductController : MonoBehaviour,IProduct
     {
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.identity;
+        transform.localScale = Vector3.one;
         Holder.bandController.nextBand.AddHolder(Holder.gameObject);
         EventManager.OnProductChangeBand.Invoke();
 
