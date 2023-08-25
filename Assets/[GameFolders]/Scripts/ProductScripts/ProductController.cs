@@ -11,6 +11,7 @@ public class ProductController : MonoBehaviour,IProduct
     public EnumTypes.ProductTypes productType;
     [HideInInspector]
     public EnumTypes.ColorTypes colorType;
+    [SerializeField]
     private int _worth;
     public int ProductWorth { get => _worth; set => _worth = value; }
     #endregion
@@ -53,6 +54,7 @@ public class ProductController : MonoBehaviour,IProduct
     public void BecomeFloadingUI()
     {
         EventManager.OnExcangeInstantiate.Invoke(transform.position,ProductWorth);
+        Debug.Log(ProductWorth);
         PoolingSystem.Instance.DestroyAPS(Holder.gameObject);
     }
     public void MoveUI(Vector3 UIPos)
@@ -61,8 +63,8 @@ public class ProductController : MonoBehaviour,IProduct
     }
     private void UICheck()
     {
-        OrderManager.Instance.orderPanel.OrderArrived();
         BecomeFloadingUI();
+        OrderManager.Instance.orderPanel.OrderArrived();
     }
     private void ProductNextScene()
     {

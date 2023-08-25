@@ -29,7 +29,7 @@ public class SceneChangerButton : MonoBehaviour
     private void ImagePump()
     {
         Vector3 currentScale = button.transform.localScale;
-        button.transform.DOPunchScale(currentScale * 1.01f, 0.2f);
+        button.transform.DOPunchScale(currentScale * 0.4f, 0.2f);
     }
     private void ChangeScene()
     {

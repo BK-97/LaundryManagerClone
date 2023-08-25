@@ -398,6 +398,101 @@ MonoBehaviour:
     - ProductType: 1
       ColorType: 0
       Amount: 3
+  - orders:
+    - ProductType: 1
+      ColorType: 0
+      Amount: 2
+    - ProductType: 2
+      ColorType: 0
+      Amount: 1
+  - orders:
+    - ProductType: 1
+      ColorType: 0
+      Amount: 1
+    - ProductType: 1
+      ColorType: 1
+      Amount: 1
+    - ProductType: 2
+      ColorType: 0
+      Amount: 1
+    - ProductType: 2
+      ColorType: 1
+      Amount: 1
+  - orders:
+    - ProductType: 1
+      ColorType: 1
+      Amount: 2
+    - ProductType: 2
+      ColorType: 0
+      Amount: 1
+    - ProductType: 2
+      ColorType: 1
+      Amount: 2
+  - orders:
+    - ProductType: 1
+      ColorType: 1
+      Amount: 1
+    - ProductType: 2
+      ColorType: 0
+      Amount: 1
+    - ProductType: 2
+      ColorType: 1
+      Amount: 2
+  - orders:
+    - ProductType: 1
+      ColorType: 0
+      Amount: 1
+    - ProductType: 2
+      ColorType: 0
+      Amount: 1
+    - ProductType: 2
+      ColorType: 1
+      Amount: 1
+    - ProductType: 3
+      ColorType: 0
+      Amount: 2
+  - orders:
+    - ProductType: 1
+      ColorType: 0
+      Amount: 1
+    - ProductType: 2
+      ColorType: 1
+      Amount: 1
+    - ProductType: 3
+      ColorType: 0
+      Amount: 1
+    - ProductType: 3
+      ColorType: 1
+      Amount: 2
+  - orders:
+    - ProductType: 1
+      ColorType: 1
+      Amount: 1
+    - ProductType: 1
+      ColorType: 2
+      Amount: 1
+    - ProductType: 2
+      ColorType: 2
+      Amount: 2
+    - ProductType: 3
+      ColorType: 1
+      Amount: 1
+    - ProductType: 3
+      ColorType: 2
+      Amount: 1
+  - orders:
+    - ProductType: 3
+      ColorType: 2
+      Amount: 1
+    - ProductType: 3
+      ColorType: 3
+      Amount: 2
+    - ProductType: 4
+      ColorType: 2
+      Amount: 1
+    - ProductType: 4
+      ColorType: 3
+      Amount: 2
   orderPanel: {fileID: 0}
   orderAddWorth: 100
 --- !u!114 &655627714

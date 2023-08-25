@@ -93,7 +93,7 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
     }
     public void ProcessStart()
     {
-        _needleTween = needle.DOMoveY(needle.transform.position.y - 0.03f, 0.1f).SetLoops(-1, LoopType.Yoyo);
+        _needleTween = needle.DOMoveY(needle.transform.position.y - 0.05f, 0.1f).SetLoops(-1, LoopType.Yoyo);
         ropeRoll.gameObject.SetActive(true);
         ropeRoll.GetComponent<SewRope>().StartWorking(processTime);
         _ropeRollTween = ropeRoll.DOLocalRotate(360 * Vector3.up, 4, RotateMode.FastBeyond360).SetEase(Ease.Linear).SetLoops(-1, LoopType.Restart);
@@ -106,7 +106,7 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
 
         processingProduct.SetInfo(ProductionType,EnumTypes.ColorTypes.None, addWorth);
 
-        processingProduct.currentProduct.GetComponent<IFakeProduct>().StartUnDissolve(processTime);
+        processingProduct.currentProduct.GetComponent<ModelController>().StartUnDissolve(processTime);
     }
     public void ProcessUpdate()
     {

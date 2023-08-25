@@ -12,7 +12,7 @@ public class CashPile : MonoBehaviour
     {
         worth = cashWorth;
         targetImage = target;
-        Invoke("MoveUI", 1);
+        MoveUI();
     }
     private void MoveUI()
     {

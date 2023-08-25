@@ -136,11 +136,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shelf Variant2
       objectReference: {fileID: 0}
-    - target: {fileID: 7168419937292005979, guid: 135d5dcd374447c4686c74b178083e2d,
-        type: 3}
-      propertyPath: shelfProcessors
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 135d5dcd374447c4686c74b178083e2d, type: 3}
 --- !u!4 &3361616319654881882 stripped

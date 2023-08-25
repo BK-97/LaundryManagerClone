@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-public class FakeSock : MonoBehaviour, IFakeProduct
+public class ModelController : MonoBehaviour
 {
     public MeshRenderer mesh;
 
     private float currentFloat;
     private Transform parentTransform;
 
-    public void StartColorChange(float processTime,Color newColor)
+    public void StartColorChange(float processTime,Color newColor,Transform targetTransform)
     {
         Material[] materials = mesh.materials;
 
@@ -19,7 +19,7 @@ public class FakeSock : MonoBehaviour, IFakeProduct
 
             Color originalColor = material.GetColor("_BaseColor");
 
-            DOTween.To(() => material.GetColor("_BaseColor"), x => material.SetColor("_BaseColor", x), newColor, processTime);
+            DOTween.To(() => material.GetColor("_BaseColor"), x => material.SetColor("_BaseColor", x), newColor, processTime).OnUpdate(()=>transform.position= targetTransform.position);
         }
     }
     public void StartUnDissolve(float processTime)

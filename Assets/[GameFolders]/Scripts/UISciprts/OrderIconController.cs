@@ -29,7 +29,6 @@ public class OrderIconController : MonoBehaviour
     }
     void Demolish()
     {
-        gameObject.SetActive(false);
-        //deðiþecek
+        Destroy(gameObject);
     }
 }

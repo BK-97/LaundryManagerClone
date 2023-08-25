@@ -86,5 +86,11 @@ public class ExchangeManager : Singleton<ExchangeManager>
         }
     }
     #endregion
+    #region Helpers
+    public void CalculateExchange()
+    {
+
+    }
+    #endregion
 }
 public class DictonaryEvent : UnityEvent<Dictionary<CurrencyType, int>> { }

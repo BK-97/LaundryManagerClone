@@ -6,7 +6,6 @@ using UnityEngine.Events;
 public class OrderManager : Singleton<OrderManager>
 {
     public List<Sprite> ProductImages;
-    private int currentOrderIndex;
     [SerializeField]
     public List<OrderList> orderLists = new List<OrderList>();
     [HideInInspector]
@@ -14,10 +13,11 @@ public class OrderManager : Singleton<OrderManager>
 
     public int orderAddWorth=100;
     public static UnityEvent OnOrderCompleted = new UnityEvent();
+    public static UnityEvent OnGetNewOrder = new UnityEvent();
 
     public List<OrderList.Order> GetOrderInfo()
     {
-        return orderLists[currentOrderIndex].orders;
+        return orderLists[LevelManager.Instance.currentDay -1].orders;
     }
     private void OnEnable()
     {
@@ -29,8 +29,8 @@ public class OrderManager : Singleton<OrderManager>
     }
     private void OrderCompleted()
     {
-
-        currentOrderIndex++;
+        
+        OnGetNewOrder.Invoke();
     }
     public void IsOrdered(ProductController product)
     {

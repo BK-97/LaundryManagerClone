@@ -44,13 +44,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1946959704531326656, guid: 135d5dcd374447c4686c74b178083e2d,
         type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.019
+      objectReference: {fileID: 0}
+    - target: {fileID: 1946959704531326656, guid: 135d5dcd374447c4686c74b178083e2d,
+        type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.98558575
+      value: 0.98575985
       objectReference: {fileID: 0}
     - target: {fileID: 1946959704531326656, guid: 135d5dcd374447c4686c74b178083e2d,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.16917688
+      value: -0.16815923
       objectReference: {fileID: 0}
     - target: {fileID: 1946959704531326656, guid: 135d5dcd374447c4686c74b178083e2d,
         type: 3}
@@ -65,7 +70,7 @@ PrefabInstance:
     - target: {fileID: 1946959704531326656, guid: 135d5dcd374447c4686c74b178083e2d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -19.48
+      value: -19.362
       objectReference: {fileID: 0}
     - target: {fileID: 3813471047233742236, guid: 135d5dcd374447c4686c74b178083e2d,
         type: 3}
@@ -125,7 +130,7 @@ PrefabInstance:
     - target: {fileID: 4586910838365552422, guid: 135d5dcd374447c4686c74b178083e2d,
         type: 3}
       propertyPath: m_Name
-      value: Shelf Variant
+      value: Shelf Variant1
       objectReference: {fileID: 0}
     - target: {fileID: 4868841949401882156, guid: 135d5dcd374447c4686c74b178083e2d,
         type: 3}

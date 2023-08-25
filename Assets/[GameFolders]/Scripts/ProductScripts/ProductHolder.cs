@@ -66,9 +66,9 @@ public class ProductHolder : MonoBehaviour,ISelectable
                 default:
                     break;
             }
-            currentProduct.GetComponent<IProduct>().SetInfo(productType,colorType, addWorth);
-            currentProduct.SetActive(true);
         }
+        currentProduct.GetComponent<IProduct>().SetInfo(productType, colorType, addWorth);
+        currentProduct.SetActive(true);
     }
     public void OnBand()
     {

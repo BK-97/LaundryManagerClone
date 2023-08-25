@@ -454,7 +454,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 0}
-  levelText: {fileID: 0}
+  levelText: {fileID: 3160109969727430418}
 --- !u!225 &7679247699097953598
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -567,7 +567,7 @@ PrefabInstance:
     - target: {fileID: 1331948570540985221, guid: f772b6e205a7f79458d02b026b2395fd,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 358
+      value: 392
       objectReference: {fileID: 0}
     - target: {fileID: 1331948570540985221, guid: f772b6e205a7f79458d02b026b2395fd,
         type: 3}

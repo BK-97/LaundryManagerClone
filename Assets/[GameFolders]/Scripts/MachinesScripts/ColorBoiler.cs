@@ -100,7 +100,7 @@ public class ColorBoiler : MonoBehaviour, ISelectable,IProcessor
         processingProduct.currentProduct.gameObject.transform.localRotation = Quaternion.identity;
 
         Color newColor = ColorManager.Instance.GetColorCode(ColorType);
-        processingProduct.currentProduct.GetComponent<IFakeProduct>().StartColorChange(processTime, newColor);
+        processingProduct.currentProduct.GetComponent<ModelController>().StartColorChange(processTime, newColor,produceSpot);
         
         OnProcess = true;
 
@@ -111,6 +111,8 @@ public class ColorBoiler : MonoBehaviour, ISelectable,IProcessor
         _onProcess = false;
         StartCoroutine(WaitForSendingProduct());
         processingProduct.SetInfo(processingProduct.currentProduct.GetComponent<ProductController>().productType, ColorType, addWorth);
+        timerSlider.gameObject.SetActive(false);
+        timerSlider.value = 0;
         stars.Play();
         clouds.Play();
     }
@@ -127,8 +129,10 @@ public class ColorBoiler : MonoBehaviour, ISelectable,IProcessor
             if (ExchangeManager.Instance.GetCurrency(CurrencyType.Cash) >= unlockCost)
             {
                 ExchangeManager.Instance.UseCurrency(CurrencyType.Cash, unlockCost);
+
                 if (LevelManager.Instance.IsLevelStarted)
                     particleRain.Play();
+
                 LockImage.gameObject.SetActive(false);
                 IsLocked = false;
             }

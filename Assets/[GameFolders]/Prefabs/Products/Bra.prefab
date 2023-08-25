@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4462271510045328435}
   - component: {fileID: 1876271522445390073}
   - component: {fileID: 269049468616343154}
-  - component: {fileID: 292782710168927184}
+  - component: {fileID: 1057722602532452144}
   m_Layer: 0
   m_Name: Bra
   m_TagString: Untagged
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   productType: 0
   colorType: 0
---- !u!114 &292782710168927184
+--- !u!114 &1057722602532452144
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,7 +108,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 74634239595139372}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2e3b0b3fd7735b4cabc6d12d3914c4f, type: 3}
+  m_Script: {fileID: 11500000, guid: f7a26ffbbe7231e4ab7a6933bef23272, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mesh: {fileID: 1876271522445390073}

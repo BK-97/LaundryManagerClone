@@ -5,20 +5,26 @@ using TMPro;
 using DG.Tweening;
 public class InGamePanel : PanelBase
 {
-    public TextMeshPro levelText;
+    public TextMeshProUGUI levelText;
     private void OnEnable()
     {
         LevelManager.Instance.OnLevelStart.AddListener(ShowPanel);
         LevelManager.Instance.OnLevelFinish.AddListener(HidePanel);
+        OrderManager.OnOrderCompleted.AddListener(SetLevelText);
+
     }
     private void OnDisable()
     {
         LevelManager.Instance.OnLevelStart.RemoveListener(ShowPanel);
         LevelManager.Instance.OnLevelFinish.RemoveListener(HidePanel);
+        OrderManager.OnOrderCompleted.RemoveListener(SetLevelText);
+
     }
     private void SetLevelText()
     {
-        levelText.gameObject.transform.DOPunchScale(levelText.gameObject.transform.localScale*1.01f,1);
+        Debug.Log("test1");
+        Vector3 currentScale = levelText.gameObject.transform.localScale;
+        levelText.gameObject.transform.DOPunchScale(Vector3.one*0.1f,1);
         levelText.text = "Day "+LevelManager.Instance.currentDay.ToString()+"!";
     }
 }
