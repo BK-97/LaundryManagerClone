@@ -22,7 +22,6 @@ public class InGamePanel : PanelBase
     }
     private void SetLevelText()
     {
-        Debug.Log("test1");
         Vector3 currentScale = levelText.gameObject.transform.localScale;
         levelText.gameObject.transform.DOPunchScale(Vector3.one*0.1f,1);
         levelText.text = "Day "+LevelManager.Instance.currentDay.ToString()+"!";

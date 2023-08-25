@@ -9,27 +9,27 @@ public class SewRope : MonoBehaviour
     private int currentIndex;
     public void StartWorking(float workTime)
     {
-        StartCoroutine(WorkCoroutine(workTime));
         currentIndex = 0;
         for (int i = 0; i < ropes.Count; i++)
         {
             ropes[i].transform.localScale = Vector3.one;
         }
+        StartCoroutine(WorkCoroutine(workTime));
+
     }
 
     private IEnumerator WorkCoroutine(float workTime)
     {
-        float interval = workTime/ropes.Count ;
-
+        float interval = workTime/ropes.Count;
         while (ropes.Count > 0)
         {
+            RopeDestroy(interval - 0.01f);
             yield return new WaitForSeconds(interval);
-            RopeDestroy(interval-0.1f);
         }
     }
     private void RopeDestroy(float destroyTime)
     {
-        ropes[currentIndex].transform.DOScale(Vector3.one*0.5f, destroyTime).SetEase(Ease.InCirc);
+        ropes[currentIndex].transform.DOScale(Vector3.zero, destroyTime).SetEase(Ease.InBack);
         currentIndex++;
     }
 }

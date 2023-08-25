@@ -10,6 +10,7 @@ public class ExchangeTextControler : MonoBehaviour
     public TextMeshProUGUI levelText;
     public Image cashIcon;
     public List<Image> cashes;
+    private Sequence punchSequence;
     private void OnEnable()
     {
         ExchangeManager.Instance.OnCurrencyChange.AddListener(SetText);
@@ -22,9 +23,20 @@ public class ExchangeTextControler : MonoBehaviour
     }
     private void SetText(Dictionary<CurrencyType, int> currencyDictionary)
     {
-        cashText.text = currencyDictionary[CurrencyType.Cash].ToString();
+        string formattedCashString = ExchangeManager.Instance.FormatNumber(currencyDictionary[CurrencyType.Cash]);
+        cashText.text = formattedCashString;
         Vector3 currentScale = transform.localScale;
-        transform.DOPunchScale(currentScale * 0.2f, 0.2f);
+        if (punchSequence != null && punchSequence.IsPlaying())
+        {
+            punchSequence.Complete();
+            transform.localScale = Vector3.one;
+            punchSequence.Append(transform.DOPunchScale(Vector3.one * 0.1f, 0.09f));
+        }
+        else
+        {
+            punchSequence.Append(transform.DOPunchScale(Vector3.one * 0.1f, 0.09f));
+        }
+       
     }
     public Image moverExchange;
     private void ExchangeCreate(Vector3 worldPos, int exchangeWorth)
@@ -49,7 +61,6 @@ public class ExchangeTextControler : MonoBehaviour
             else
                 pileExchangeAmount = currentExchange;
 
-            Debug.Log(pileExchangeAmount);
             cashes[i].GetComponent<CashPile>().SetInfo(pileExchangeAmount, cashIcon);
             yield return new WaitForSeconds(0.1f);
         }

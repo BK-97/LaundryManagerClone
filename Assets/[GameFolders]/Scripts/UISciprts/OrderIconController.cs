@@ -5,12 +5,15 @@ using UnityEngine.UI;
 
 public class OrderIconController : MonoBehaviour
 {
+    #region Params
     public Image orderIcon;
     public Image backGround;
     [HideInInspector]
     public EnumTypes.ProductTypes proType;
     [HideInInspector]
     public EnumTypes.ColorTypes colorType;
+    #endregion
+    #region Methods
     public void SetInfo(EnumTypes.ProductTypes proType, EnumTypes.ColorTypes colorType)
     {
         this.proType = proType;
@@ -31,4 +34,5 @@ public class OrderIconController : MonoBehaviour
     {
         Destroy(gameObject);
     }
+    #endregion
 }

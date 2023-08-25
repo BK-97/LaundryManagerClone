@@ -157,7 +157,7 @@ Material:
     - _OutlinePixelSizeType: 0
     - _OutlineTextureLOD: 5
     - _OutlineTextureType: 0
-    - _OutlineWidth: 0
+    - _OutlineWidth: 0.026
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _RampBands: 4
@@ -174,13 +174,19 @@ Material:
     - _RenderingMode: 0
     - _RimMax: 1
     - _RimMin: 0.81
+    - _RimStep: 0.682
+    - _RimStepSmooth: 0.4
     - _ShadowColorLightAtten: 1
+    - _ShadowStep: 0
+    - _ShadowStepSmooth: 0
     - _SingleIndirectColor: 0
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SpecularMapType: 0
     - _SpecularRoughness: 0.5
+    - _SpecularStep: 0
+    - _SpecularStepSmooth: 0
     - _SpecularToonSize: 0.25
     - _SpecularToonSmoothness: 0.05
     - _SpecularType: 1

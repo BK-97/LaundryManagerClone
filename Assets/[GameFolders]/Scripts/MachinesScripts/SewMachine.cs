@@ -24,6 +24,7 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
 
     private Tween _needleTween;
     private Tween _ropeRollTween;
+    [SerializeField]
     private ProductHolder processingProduct;
 
     [Header("Selectable Params")]
@@ -93,6 +94,7 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
     }
     public void ProcessStart()
     {
+
         _needleTween = needle.DOMoveY(needle.transform.position.y - 0.05f, 0.1f).SetLoops(-1, LoopType.Yoyo);
         ropeRoll.gameObject.SetActive(true);
         ropeRoll.GetComponent<SewRope>().StartWorking(processTime);

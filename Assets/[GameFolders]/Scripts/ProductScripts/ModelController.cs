@@ -8,7 +8,6 @@ public class ModelController : MonoBehaviour
 
     private float currentFloat;
     private Transform parentTransform;
-
     public void StartColorChange(float processTime,Color newColor,Transform targetTransform)
     {
         Material[] materials = mesh.materials;
@@ -19,7 +18,9 @@ public class ModelController : MonoBehaviour
 
             Color originalColor = material.GetColor("_BaseColor");
 
-            DOTween.To(() => material.GetColor("_BaseColor"), x => material.SetColor("_BaseColor", x), newColor, processTime).OnUpdate(()=>transform.position= targetTransform.position);
+            DOTween.To(() => material.GetColor("_BaseColor"), x => material.SetColor("_BaseColor", x), newColor, processTime)
+                .OnUpdate(()=>transform.position= targetTransform.position)
+                .SetEase(Ease.InBack);
         }
     }
     public void StartUnDissolve(float processTime)
@@ -30,6 +31,7 @@ public class ModelController : MonoBehaviour
         parentTransform.transform.DOMove(parentTransform.position+newPos,processTime);
         currentFloat = 0.35f;
         DOTween.To(() => currentFloat, x => currentFloat = x, 0.25f, processTime).SetEase(Ease.Linear)
-            .OnUpdate(() => mesh.sharedMaterials[0].SetFloat("_Dissolve", currentFloat));
+            .OnUpdate(() => mesh.materials[0].SetFloat("_Dissolve", currentFloat));
     }
+
 }

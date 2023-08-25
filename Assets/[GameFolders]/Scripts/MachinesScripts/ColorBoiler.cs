@@ -50,8 +50,6 @@ public class ColorBoiler : MonoBehaviour, ISelectable,IProcessor
 
     public void Selected()
     {
-        Debug.Log("Machine Selected");
-
         if (isSelected)
             return;
         isSelected = true;
@@ -61,7 +59,6 @@ public class ColorBoiler : MonoBehaviour, ISelectable,IProcessor
     {
         if (!isSelected)
             return;
-        Debug.Log("Machine DeSelected");
 
         isSelected = false;
     }

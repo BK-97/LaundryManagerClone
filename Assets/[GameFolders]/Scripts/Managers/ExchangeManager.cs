@@ -87,10 +87,22 @@ public class ExchangeManager : Singleton<ExchangeManager>
     }
     #endregion
     #region Helpers
-    public void CalculateExchange()
+    public string FormatNumber(int value)
     {
-
+        if (value >= 1000 && value < 1000000)
+        {
+            return (value / 1000f).ToString("F1") + "K";
+        }
+        else if (value >= 1000000)
+        {
+            return (value / 1000000f).ToString("F1") + "M";
+        }
+        else
+        {
+            return value.ToString();
+        }
     }
+
     #endregion
 }
 public class DictonaryEvent : UnityEvent<Dictionary<CurrencyType, int>> { }
