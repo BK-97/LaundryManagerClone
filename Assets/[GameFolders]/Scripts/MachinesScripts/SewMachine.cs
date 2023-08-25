@@ -16,7 +16,7 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
     public int addWorth;
     public int unlockLevel;
     public int unlockCost;
-
+    public string prefID;
 
     [Header("SewMachine Params")]
     public Transform needle;
@@ -106,7 +106,7 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
         processingProduct.currentProduct.gameObject.transform.localPosition = Vector3.zero;
         processingProduct.currentProduct.gameObject.transform.localRotation = Quaternion.identity;
 
-        processingProduct.SetInfo(ProductionType,EnumTypes.ColorTypes.None, addWorth);
+        processingProduct.SetInfo(ProductionType, EnumTypes.ColorTypes.None, addWorth);
 
         processingProduct.currentProduct.GetComponent<ModelController>().StartUnDissolve(processTime);
     }
@@ -147,20 +147,32 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
     }
     public void ProcessorUnlock()
     {
-        if (LevelManager.Instance.currentDay >= unlockLevel)
+        if (PlayerPrefs.GetInt(PlayerPrefKeys.CurrentDay, 1) >= unlockLevel)
         {
-            if (ExchangeManager.Instance.GetCurrency(CurrencyType.Cash) >= unlockCost)
+            if (!LevelManager.Instance.IsLevelStarted)
             {
                 ProductIconHolder.gameObject.SetActive(true);
                 ProductIcon.sprite = OrderManager.Instance.GetProductSprite(ProductionType);
-                ExchangeManager.Instance.UseCurrency(CurrencyType.Cash, unlockCost);
-                if(LevelManager.Instance.IsLevelStarted)
-                    particleRain.Play();
+
                 LockImage.gameObject.SetActive(false);
                 IsLocked = false;
             }
-        }
+            else
+            {
+                if (ExchangeManager.Instance.GetCurrency(CurrencyType.Cash) >= unlockCost)
+                {
+                    PlayerPrefs.SetInt(prefID, 1);
+                    particleRain.Play();
+                    ExchangeManager.Instance.UseCurrency(CurrencyType.Cash, unlockCost);
 
+                    ProductIconHolder.gameObject.SetActive(true);
+                    ProductIcon.sprite = OrderManager.Instance.GetProductSprite(ProductionType);
+
+                    LockImage.gameObject.SetActive(false);
+                    IsLocked = false;
+                }
+            }
+        }
     }
     #endregion
     #region MyMethods
@@ -174,14 +186,16 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
         }
         else
         {
-            ProductIconHolder.gameObject.SetActive(false);
-            if (unlockLevel > LevelManager.Instance.currentDay)
-                lockText.text = "Level "+unlockLevel.ToString();
+            if (PlayerPrefs.GetInt(prefID, 0) == 1)
+                ProcessorUnlock();
             else
-                lockText.text = unlockCost.ToString();
+            {
+                ProductIconHolder.gameObject.SetActive(false);
+                UpdateLockText();
+            }
 
         }
-        
+
         ropeRoll.gameObject.SetActive(false);
 
     }
@@ -192,7 +206,29 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
             ProcessUpdate();
         }
     }
+    private void UpdateLockText()
+    {
+        if (IsLocked)
+        {
+            if (unlockLevel > PlayerPrefs.GetInt(PlayerPrefKeys.CurrentDay, 1))
+            {
+                lockText.text = "Level " + unlockLevel.ToString();
+            }
+            else
+            {
+                lockText.text =unlockCost.ToString();
+            }
 
+        }
+    }
+    private void OnEnable()
+    {
+        OrderManager.OnGetNewOrder.AddListener(UpdateLockText);
+    }
+    private void OnDisable()
+    {
+        OrderManager.OnGetNewOrder.RemoveListener(UpdateLockText);
 
+    }
     #endregion
 }

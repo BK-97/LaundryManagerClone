@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public enum CurrencyType //Must be the same name as in PlayerPrefKeys
+public enum CurrencyType
 {
     Coin,
     Cash
@@ -21,14 +21,13 @@ public class ExchangeManager : Singleton<ExchangeManager>
     {
         currencyDictionary = new Dictionary<CurrencyType, int>();
     }
-    private void Start()
-    {
-        PlayerPrefs.SetInt(PlayerPrefKeys.CurrentCash, 300);
-        currencyDictionary[CurrencyType.Cash] = PlayerPrefs.GetInt(PlayerPrefKeys.CurrentCash, 300); //For Test
-    }
     public void SetUIPos(Vector3 pos)
     {
         UIPos = pos;
+    }
+    private void Start()
+    {
+        currencyDictionary[CurrencyType.Cash] = PlayerPrefs.GetInt(PlayerPrefKeys.CurrentCash, 0);
     }
     private void OnEnable()
     {

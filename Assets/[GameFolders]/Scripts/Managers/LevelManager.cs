@@ -8,8 +8,6 @@ public class LevelManager : Singleton<LevelManager>
     public LevelData LevelData;
 
     public Level CurrentLevel { get { return LevelData.Levels[LevelIndex]; } }
-    [HideInInspector]
-    public int currentDay=1;
 
     [HideInInspector]
     public UnityEvent OnLevelStart = new UnityEvent();
@@ -47,7 +45,7 @@ public class LevelManager : Singleton<LevelManager>
     private void OnEnable()
     {
         GameManager.Instance.OnStageFail.AddListener(ReloadLevel);
-        OrderManager.OnOrderCompleted.AddListener(()=>currentDay+=1);
+        OrderManager.OnOrderCompleted.AddListener(()=> PlayerPrefs.SetInt(PlayerPrefKeys.CurrentDay, PlayerPrefs.GetInt(PlayerPrefKeys.CurrentDay,1)+1));
 
 
     }
@@ -55,7 +53,7 @@ public class LevelManager : Singleton<LevelManager>
     private void OnDisable()
     {
         GameManager.Instance.OnStageFail.RemoveListener(ReloadLevel);
-        OrderManager.OnOrderCompleted.RemoveListener(() => currentDay += 1);
+        OrderManager.OnOrderCompleted.RemoveListener(() => PlayerPrefs.SetInt(PlayerPrefKeys.CurrentDay, PlayerPrefs.GetInt(PlayerPrefKeys.CurrentDay, 1) + 1));
 
     }
     public void ReloadLevel()

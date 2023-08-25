@@ -17,7 +17,7 @@ public class OrderManager : Singleton<OrderManager>
 
     public List<OrderList.Order> GetOrderInfo()
     {
-        return orderLists[LevelManager.Instance.currentDay -1].orders;
+        return orderLists[PlayerPrefs.GetInt(PlayerPrefKeys.CurrentDay, 1)-1].orders;
     }
     private void OnEnable()
     {
@@ -29,7 +29,6 @@ public class OrderManager : Singleton<OrderManager>
     }
     private void OrderCompleted()
     {
-        
         OnGetNewOrder.Invoke();
     }
     public void IsOrdered(ProductController product)

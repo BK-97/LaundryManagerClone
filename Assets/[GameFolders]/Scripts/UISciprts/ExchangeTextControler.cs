@@ -53,13 +53,15 @@ public class ExchangeTextControler : MonoBehaviour
     IEnumerator WaitCash(int exchangeWorth)
     {
         int currentExchange = exchangeWorth;
-        for (int i = 0; i < cashes.Count; i++)
+
+        int numberOfPiles = cashes.Count;
+        int pileExchangeAmount = currentExchange / numberOfPiles;
+        for (int i = 0; i < numberOfPiles; i++)
         {
-            int pileExchangeAmount=0;
-            if (i != 2)
-                pileExchangeAmount = exchangeWorth-(currentExchange/3);
-            else
-                pileExchangeAmount = currentExchange;
+            if (i == numberOfPiles - 1 && currentExchange % numberOfPiles != 0)
+            {
+                pileExchangeAmount += currentExchange % numberOfPiles;
+            }
 
             cashes[i].GetComponent<CashPile>().SetInfo(pileExchangeAmount, cashIcon);
             yield return new WaitForSeconds(0.1f);

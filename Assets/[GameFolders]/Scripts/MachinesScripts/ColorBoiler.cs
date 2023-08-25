@@ -121,7 +121,7 @@ public class ColorBoiler : MonoBehaviour, ISelectable,IProcessor
 
     public void ProcessorUnlock()
     {
-        if (LevelManager.Instance.currentDay >= unlockLevel)
+        if (PlayerPrefs.GetInt(PlayerPrefKeys.CurrentDay, 1) >= unlockLevel)
         {
             if (ExchangeManager.Instance.GetCurrency(CurrencyType.Cash) >= unlockCost)
             {
@@ -157,10 +157,7 @@ public class ColorBoiler : MonoBehaviour, ISelectable,IProcessor
         }
         else
         {
-            if (unlockLevel > LevelManager.Instance.currentDay)
-                lockText.text = "Level " + unlockLevel.ToString();
-            else
-                lockText.text = unlockCost.ToString();
+            UpdateLockText();
         }
     }
     private void Update()
@@ -169,6 +166,30 @@ public class ColorBoiler : MonoBehaviour, ISelectable,IProcessor
         {
             ProcessUpdate();
         }
+    }
+    private void UpdateLockText()
+    {
+        if (IsLocked)
+        {
+            if (unlockLevel > PlayerPrefs.GetInt(PlayerPrefKeys.CurrentDay, 1))
+            {
+                lockText.text = "Level " + unlockLevel.ToString();
+            }
+            else
+            {
+                lockText.text = unlockCost.ToString();
+            }
+
+        }
+    }
+    private void OnEnable()
+    {
+        OrderManager.OnGetNewOrder.AddListener(UpdateLockText);
+    }
+    private void OnDisable()
+    {
+        OrderManager.OnGetNewOrder.RemoveListener(UpdateLockText);
+
     }
     #endregion
 }
