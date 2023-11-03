@@ -27,7 +27,8 @@ public class ExchangeManager : Singleton<ExchangeManager>
     }
     private void Start()
     {
-        currencyDictionary[CurrencyType.Cash] = PlayerPrefs.GetInt(PlayerPrefKeys.CurrentCash, 0);
+        currencyDictionary[CurrencyType.Cash] = PlayerPrefs.GetInt(PlayerPrefKeys.CurrentCash, 100);
+        OnCurrencyChange.Invoke(currencyDictionary);
     }
     private void OnEnable()
     {

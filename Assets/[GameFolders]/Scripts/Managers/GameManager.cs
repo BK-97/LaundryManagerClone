@@ -29,7 +29,8 @@ public class GameManager : Singleton<GameManager>
     public UnityEvent OnStageSuccess = new UnityEvent();
     [HideInInspector]
     public UnityEvent OnStageFail = new UnityEvent();
-
+    [HideInInspector]
+    public UnityEvent OnDeskChange = new UnityEvent();
     private bool isGameStarted;
     public bool IsGameStarted { get { return isGameStarted; } set { isGameStarted = value; } }
 
@@ -39,14 +40,28 @@ public class GameManager : Singleton<GameManager>
     public GameConfig GameConfig;
     [HideInInspector]
     public Vector3 NextSceneUIPos;
+    public enum WorkDesks { SewDesk,ColorDesk}
+    private WorkDesks currentDesk=WorkDesks.SewDesk;
     private void OnEnable()
     {
         SceneController.Instance.OnSceneLoaded.AddListener(() => IsStageCompleted = false);
     }
-
     private void OnDisable()
     {
         SceneController.Instance.OnSceneLoaded.RemoveListener(() => IsStageCompleted = false);
+    }
+    public void DeskChange()
+    {
+        if (currentDesk == WorkDesks.SewDesk)
+            currentDesk = WorkDesks.ColorDesk;
+        else
+            currentDesk = WorkDesks.SewDesk;
+
+        OnDeskChange.Invoke();
+    }
+    public WorkDesks GetCurrentDesk()
+    {
+        return currentDesk;
     }
     public void StartGame()
     {

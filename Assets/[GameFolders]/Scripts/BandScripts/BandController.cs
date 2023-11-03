@@ -9,6 +9,7 @@ public class BandController : MonoBehaviour
     public List<Transform> HolderPoints;
     public List<GameObject> Holders;
     public bool colorBoil;
+    private bool bandIsFull;
     private void Start()
     {
         matSpawner = GetComponent<RawMaterialSpawner>();
@@ -29,6 +30,8 @@ public class BandController : MonoBehaviour
         Holders.Add(newHolder);
         newHolder.GetComponent<ProductHolder>().bandController=this;
         newHolder.GetComponent<ProductHolder>().OnBand();
+        if (Holders.Count == 3)
+            bandIsFull = true;
     }
     public void RemoveHolder(GameObject removeHolder)
     {
@@ -40,12 +43,12 @@ public class BandController : MonoBehaviour
             }
         }
 
-        if (Holders.Count == 0)
-        {
-            if (matSpawner != null)
-                matSpawner.Spawn();
-        }
-
+        if (Holders.Count < 3)
+            bandIsFull = false;
         SortHolders();
+    }
+    public bool IsBandFull()
+    {
+        return bandIsFull;
     }
 }
