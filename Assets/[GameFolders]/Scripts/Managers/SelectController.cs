@@ -22,7 +22,7 @@ public class SelectController : MonoBehaviour
         GameObject selectedObject = GetTappedObject();
         if (selectedObject == null)
             return;
-
+        
         ISelectable selected = GetTappedOnISelectable(selectedObject);
         if (selected == null)
             return;
@@ -31,11 +31,12 @@ public class SelectController : MonoBehaviour
 
         if (product != null)
             CalculateSelectedProduct(selectedObject, selected);
-
-        IProcessor processor = GetSelectedProcessor(selectedObject);
-        if (processor != null)
-            CalculateSelectedProcessor(processor,selected);
-
+        else
+        {
+            IProcessor processor = GetSelectedProcessor(selectedObject);
+            if (processor != null)
+                CalculateSelectedProcessor(processor, selected);
+        }
     }
     public void ResetSelect()
     {
@@ -49,6 +50,11 @@ public class SelectController : MonoBehaviour
     {
         if (processor.OnProcess)
             return;
+        if (processor.HasReadyProduct)
+        {
+            processor.SendProduct();
+            return;
+        }
         if (processor.IsLocked)
         {
             processor.ProcessorUnlock();
@@ -62,7 +68,6 @@ public class SelectController : MonoBehaviour
     }
     private void CalculateSelectedProduct(GameObject selectedObject, ISelectable selectable)
     {
-
         if (selectedProduct != null)
         {
             if (selectable.isSelected)

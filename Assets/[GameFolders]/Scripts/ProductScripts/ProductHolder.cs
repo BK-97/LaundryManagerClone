@@ -72,20 +72,29 @@ public class ProductHolder : MonoBehaviour,ISelectable
         currentProduct.GetComponent<IProduct>().SetInfo(productType, colorType, addWorth);
         currentProduct.SetActive(true);
     }
+    public void MovePoint(Vector3 targetPoint)
+    {
+        transform.DOMove(targetPoint, 0.2f);
+    }
+    public void DemolishEnd()
+    {
+        bandController.RemoveHolder(gameObject);
+        Destroy(gameObject);
+    }
+    #region Effects
     public void OnBand()
     {
         CircleImage.gameObject.transform.localScale = Vector3.one;
         CircleImage.enabled = true;
         if (bandController.isFirstBand)
             return;
-        priceText.text = currentProduct.GetComponent<IProduct>().ProductWorth.ToString()+"$";
+        priceText.text = currentProduct.GetComponent<IProduct>().ProductWorth.ToString() + "$";
         priceText.gameObject.SetActive(true);
     }
     public void OutBand()
     {
         CircleImage.enabled = false;
         priceText.gameObject.SetActive(false);
-
     }
     private void BrightColor()
     {
@@ -105,15 +114,7 @@ public class ProductHolder : MonoBehaviour,ISelectable
         Vector3 newScale = Vector3.zero;
         CircleImage.gameObject.transform.DOScale(newScale, 0.2f);
     }
-    public void DemolishEnd()
-    {
-        bandController.RemoveHolder(gameObject);
-        Destroy(gameObject);
-    }
-    public void MovePoint(Vector3 targetPoint)
-    {
-        transform.DOMove(targetPoint,0.2f);
-    }
+    #endregion
     #endregion
 }
  

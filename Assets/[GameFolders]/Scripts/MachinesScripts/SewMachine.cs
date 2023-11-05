@@ -16,7 +16,8 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
     public int addWorth;
     public int unlockLevel;
     public int unlockCost;
-    public string prefID;
+    public int prefIDIndex;
+    private string cachedID;
 
     [Header("SewMachine Params")]
     public Transform needle;
@@ -30,10 +31,15 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
     [Header("Selectable Params")]
     [SerializeField]
     private bool _isSelected;
+
+    [Header("Processor Params")]
     [SerializeField]
     private bool _isLocked;
-
+    [SerializeField]
+    private bool _hasReadyProduct;
+    [SerializeField]
     private bool _onProcess;
+
     private float elapsedTime;
 
     [Header("UI")]
@@ -59,8 +65,11 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
     {
         if (isSelected)
             return;
+
         isSelected = true;
+
         Deselected();
+
     }
     public void Deselected()
     {
@@ -69,8 +78,6 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
 
         isSelected = false;
     }
-
-
     #endregion
     #region IProcessor
     public bool IsLocked
@@ -83,6 +90,11 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
         get => _onProcess;
         set { _onProcess = value; }
     }
+    public bool HasReadyProduct
+    {
+        get => _hasReadyProduct;
+        set { _hasReadyProduct = value; }
+    }
     public void GetProduct(ProductHolder proHolder)
     {
         processingProduct = proHolder;
@@ -94,7 +106,6 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
     }
     public void ProcessStart()
     {
-
         _needleTween = needle.DOMoveY(needle.transform.position.y - 0.05f, 0.1f).SetLoops(-1, LoopType.Yoyo);
         ropeRoll.gameObject.SetActive(true);
         ropeRoll.GetComponent<SewRope>().StartWorking(processTime);
@@ -126,7 +137,6 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
         _needleTween.Kill();
         _ropeRollTween.Kill();
         ropeRoll.gameObject.SetActive(false);
-        _onProcess = false;
         StartCoroutine(IconColorCO());
         StartCoroutine(WaitForSendingProduct());
         stars.Play();
@@ -135,7 +145,13 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
     IEnumerator WaitForSendingProduct()
     {
         yield return new WaitForSeconds(1.5f);
+        _hasReadyProduct = true;
+        _onProcess = false;
+    }
+    public void SendProduct()
+    {
         processingProduct.GetComponent<ProductHolder>().currentProduct.GetComponent<IProduct>().MoveNextProcess();
+        _hasReadyProduct = false;
 
     }
     IEnumerator IconColorCO()
@@ -161,7 +177,7 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
             {
                 if (ExchangeManager.Instance.GetCurrency(CurrencyType.Cash) >= unlockCost)
                 {
-                    PlayerPrefs.SetInt(prefID, 1);
+                    PlayerPrefs.SetInt(cachedID, 1);
                     particleRain.Play();
                     ExchangeManager.Instance.UseCurrency(CurrencyType.Cash, unlockCost);
 
@@ -179,14 +195,14 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
     private void Start()
     {
         OnProcess = false;
-
+        SetPrefID();
         if (!IsLocked)
         {
             ProcessorUnlock();
         }
         else
         {
-            if (PlayerPrefs.GetInt(prefID, 0) == 1)
+            if (PlayerPrefs.GetInt(cachedID, 0) == 1)
                 ProcessorUnlock();
             else
             {
@@ -198,6 +214,21 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
 
         ropeRoll.gameObject.SetActive(false);
 
+    }
+    private void SetPrefID()
+    {
+        switch (ProcessorType)
+        {
+            case EnumTypes.ProcessorTypes.SewMachine:
+                cachedID = "Sew" + prefIDIndex;
+
+                break;
+            case EnumTypes.ProcessorTypes.ColorChanger:
+                cachedID = "Color" + prefIDIndex;
+                break;
+            default:
+                break;
+        }
     }
     private void Update()
     {
@@ -216,7 +247,7 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
             }
             else
             {
-                lockText.text =unlockCost.ToString();
+                lockText.text = unlockCost.ToString();
             }
 
         }

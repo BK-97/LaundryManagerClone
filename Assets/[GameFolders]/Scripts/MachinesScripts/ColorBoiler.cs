@@ -16,6 +16,8 @@ public class ColorBoiler : MonoBehaviour, ISelectable,IProcessor
     public int addWorth;
     public int unlockLevel;
     public int unlockCost;
+    public int prefIDIndex;
+    private string cachedID;
 
     [Header("ColorBoiler Params")]
     private ProductHolder processingProduct;
@@ -25,10 +27,15 @@ public class ColorBoiler : MonoBehaviour, ISelectable,IProcessor
     [Header("Serializefields")]
     [SerializeField]
     private bool _isSelected;
+
+    [Header("Processor Params")]
     [SerializeField]
     private bool _isLocked;
-
+    [SerializeField]
+    private bool _hasReadyProduct;
+    [SerializeField]
     private bool _onProcess;
+
     private float elapsedTime;
 
     [Header("UI")]
@@ -76,6 +83,11 @@ public class ColorBoiler : MonoBehaviour, ISelectable,IProcessor
         get => _onProcess;
         set { _onProcess = value; }
     }
+    public bool HasReadyProduct
+    {
+        get => _hasReadyProduct;
+        set { _hasReadyProduct = value; }
+    }
     public void GetProduct(ProductHolder proHolder)
     {
         processingProduct = proHolder;
@@ -116,9 +128,15 @@ public class ColorBoiler : MonoBehaviour, ISelectable,IProcessor
     IEnumerator WaitForSendingProduct()
     {
         yield return new WaitForSeconds(1.5f);
-        processingProduct.GetComponent<ProductHolder>().currentProduct.GetComponent<IProduct>().Sell();
+        _hasReadyProduct = true;
+        _onProcess = false;
     }
+    public void SendProduct()
+    {
+        processingProduct.GetComponent<ProductHolder>().currentProduct.GetComponent<IProduct>().MoveNextProcess();
+        _hasReadyProduct = false;
 
+    }
     public void ProcessorUnlock()
     {
         if (PlayerPrefs.GetInt(PlayerPrefKeys.CurrentDay, 1) >= unlockLevel)
@@ -149,6 +167,8 @@ public class ColorBoiler : MonoBehaviour, ISelectable,IProcessor
     private void Start()
     {
         OnProcess = false;
+        SetPrefID();
+
         Color liquidColor = ColorManager.Instance.GetColorCode(ColorType);
         boilColorMesh.materials[1].color = liquidColor;
         if (!IsLocked)
@@ -157,7 +177,28 @@ public class ColorBoiler : MonoBehaviour, ISelectable,IProcessor
         }
         else
         {
-            UpdateLockText();
+            if (PlayerPrefs.GetInt(cachedID, 0) == 1)
+                ProcessorUnlock();
+            else
+            {
+                UpdateLockText();
+            }
+        }
+       
+    }
+    private void SetPrefID()
+    {
+        switch (ProcessorType)
+        {
+            case EnumTypes.ProcessorTypes.SewMachine:
+                cachedID = "Sew" + prefIDIndex;
+
+                break;
+            case EnumTypes.ProcessorTypes.ColorChanger:
+                cachedID = "Color" + prefIDIndex;
+                break;
+            default:
+                break;
         }
     }
     private void Update()
