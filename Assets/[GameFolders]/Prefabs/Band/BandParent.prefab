@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2795541550600768308}
   - component: {fileID: 5471469248350402700}
-  - component: {fileID: 6285026832466643976}
   m_Layer: 0
   m_Name: BandParent
   m_TagString: Untagged
@@ -49,24 +48,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1a063690ab1707458459215ceac496b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextBand: {fileID: 0}
   HolderPoints:
   - {fileID: 6061630903417636779}
   - {fileID: 6282310570890132558}
   - {fileID: 1053143866262014152}
   Holders: []
   colorBoil: 1
---- !u!114 &6285026832466643976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1655466144609137050}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 302f64e09f0d861448c4f607b458d6d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  holdProductType: 0
 --- !u!1 &3630613923021538661
 GameObject:
   m_ObjectHideFlags: 0

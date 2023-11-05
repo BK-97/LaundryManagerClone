@@ -54,7 +54,7 @@ public class ProductController : MonoBehaviour,IProduct
     public void BecomeFloadingUI()
     {
         EventManager.OnExcangeInstantiate.Invoke(transform.position,ProductWorth);
-        PoolingSystem.Instance.DestroyAPS(Holder.gameObject);
+        Holder.gameObject.SetActive(false);
     }
     public void MoveUI(Vector3 UIPos)
     {

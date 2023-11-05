@@ -256,7 +256,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LevelData: {fileID: 11400000, guid: 5a80a472f8e3ee44585c476240c58ea3, type: 2}
-  currentDay: 1
   OnLevelStart:
     m_PersistentCalls:
       m_Calls: []
@@ -341,6 +340,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   OnStageFail:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeskChange:
     m_PersistentCalls:
       m_Calls: []
   NextSceneUIPos: {x: 0, y: 0, z: 0}
@@ -589,22 +591,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e11ea5aade4e4b4498bbe62b86207843, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SourceObjects:
-  - ID: ProductHolder
-    SourcePrefab: {fileID: 9117348885810081181, guid: 03766614d28f48e4f815e48c839560b8,
-      type: 3}
-    MinNumberOfObject: 0
-    AllowGrow: 0
-    AutoDestroy: 0
-    clones: []
-  - ID: CashPile
-    SourcePrefab: {fileID: 3524760124198824273, guid: 13298db590c0a8245ace3d9cabed9e50,
-      type: 3}
-    MinNumberOfObject: 0
-    AllowGrow: 0
-    AutoDestroy: 0
-    clones: []
-  DefaultCount: 10
+  PoolObjects: []
 --- !u!4 &1790121132
 Transform:
   m_ObjectHideFlags: 0

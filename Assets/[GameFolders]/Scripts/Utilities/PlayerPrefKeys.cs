@@ -12,5 +12,4 @@ public static class PlayerPrefKeys
     public const string ColorBoil2 = "Boil2";
     public const string ColorBoil3 = "Boil3";
     public const string ColorBoil4 = "Boil4";
-
 }

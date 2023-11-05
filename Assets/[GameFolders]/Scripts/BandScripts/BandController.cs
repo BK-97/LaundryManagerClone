@@ -1,18 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BandController : MonoBehaviour
 {
     public BandController nextBand;
-    private RawMaterialSpawner matSpawner;
     public List<Transform> HolderPoints;
     public List<GameObject> Holders;
-    public bool colorBoil;
-    private bool bandIsFull;
+    private bool isBandFull;
+    public bool isFirstBand;
+    public GameObject HolderPrefab;
     private void Start()
     {
-        matSpawner = GetComponent<RawMaterialSpawner>();
+        if (isFirstBand)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                SpawnRawResources();
+            }
+        }
     }
     public void SortHolders()
     {
@@ -31,7 +38,8 @@ public class BandController : MonoBehaviour
         newHolder.GetComponent<ProductHolder>().bandController=this;
         newHolder.GetComponent<ProductHolder>().OnBand();
         if (Holders.Count == 3)
-            bandIsFull = true;
+            isBandFull = true;
+
     }
     public void RemoveHolder(GameObject removeHolder)
     {
@@ -44,11 +52,28 @@ public class BandController : MonoBehaviour
         }
 
         if (Holders.Count < 3)
-            bandIsFull = false;
+            isBandFull = false;
+        if (isFirstBand && Holders.Count == 0)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                SpawnRawResources();
+            }
+        }
+            
         SortHolders();
     }
-    public bool IsBandFull()
+    private void SpawnRawResources()
     {
-        return bandIsFull;
+        if (isBandFull)
+            return;
+        if (!isFirstBand)
+            return;
+
+        //dotween ile saðdan smooth þekilde yerine yerleþtir
+        var go = Instantiate(HolderPrefab);
+        go.GetComponent<ProductHolder>().SetInfo(EnumTypes.ProductTypes.Rope, EnumTypes.ColorTypes.None, 0);
+        AddHolder(go);
+        go.GetComponent<ProductHolder>().OnBand();
     }
 }

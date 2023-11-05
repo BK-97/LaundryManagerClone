@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using TMPro;
 public class ProductHolder : MonoBehaviour,ISelectable
 {
     #region Params
@@ -10,6 +11,7 @@ public class ProductHolder : MonoBehaviour,ISelectable
     [HideInInspector]
     public GameObject currentProduct;
     public Image CircleImage;
+    public TextMeshProUGUI priceText;
     private bool _isSelected;
     [HideInInspector]
     public BandController bandController;
@@ -74,10 +76,16 @@ public class ProductHolder : MonoBehaviour,ISelectable
     {
         CircleImage.gameObject.transform.localScale = Vector3.one;
         CircleImage.enabled = true;
+        if (bandController.isFirstBand)
+            return;
+        priceText.text = currentProduct.GetComponent<IProduct>().ProductWorth.ToString()+"$";
+        priceText.gameObject.SetActive(true);
     }
     public void OutBand()
     {
         CircleImage.enabled = false;
+        priceText.gameObject.SetActive(false);
+
     }
     private void BrightColor()
     {
@@ -100,7 +108,7 @@ public class ProductHolder : MonoBehaviour,ISelectable
     public void DemolishEnd()
     {
         bandController.RemoveHolder(gameObject);
-        PoolingSystem.Instance.DestroyAPS(gameObject);
+        Destroy(gameObject);
     }
     public void MovePoint(Vector3 targetPoint)
     {

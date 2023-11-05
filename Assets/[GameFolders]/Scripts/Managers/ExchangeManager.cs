@@ -102,7 +102,38 @@ public class ExchangeManager : Singleton<ExchangeManager>
             return value.ToString();
         }
     }
+    public int GetProductValueByType(EnumTypes.ProductTypes productType)
+    {
+        int cachedValue = 0;
+        if (productType == EnumTypes.ProductTypes.Rope)
+            cachedValue = 0;
+        else if(productType == EnumTypes.ProductTypes.Socks)
+            cachedValue = 50;
+        else if (productType == EnumTypes.ProductTypes.Bra)
+            cachedValue = 100;
+        else if (productType == EnumTypes.ProductTypes.Short)
+            cachedValue = 200;
+        else if (productType == EnumTypes.ProductTypes.Tong)
+            cachedValue = 300;
+        return cachedValue;
+    }
+    public int GetProductValueByColor(EnumTypes.ColorTypes colorType)
+    {
+        int cachedValue = 0;
 
+        if (colorType == EnumTypes.ColorTypes.None)
+            cachedValue = 0;
+        else if (colorType == EnumTypes.ColorTypes.Turquoise)
+            cachedValue = 100;
+        else if (colorType == EnumTypes.ColorTypes.Blue)
+            cachedValue = 120;
+        else if (colorType == EnumTypes.ColorTypes.Green)
+            cachedValue = 200;
+        else if (colorType == EnumTypes.ColorTypes.Red)
+            cachedValue = 300;
+
+        return cachedValue;
+    }
     #endregion
 }
 public class DictonaryEvent : UnityEvent<Dictionary<CurrencyType, int>> { }
