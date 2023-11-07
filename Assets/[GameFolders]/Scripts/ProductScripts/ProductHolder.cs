@@ -65,6 +65,9 @@ public class ProductHolder : MonoBehaviour,ISelectable
                 case EnumTypes.ProductTypes.Short:
                     currentProduct = productObjects[3];
                     break;
+                case EnumTypes.ProductTypes.Tong:
+                    currentProduct = productObjects[4];
+                    break;
                 default:
                     break;
             }

@@ -129,7 +129,7 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
         {
             int _index = i;
             if (_index >= fxs.Count)
-                _index = _index - fxs.Count;
+                _index = processTime%fxs.Count;
             fxs[_index].Play();
             yield return new WaitForSeconds(1);
         }

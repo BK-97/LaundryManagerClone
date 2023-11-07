@@ -44,17 +44,15 @@ public class LevelManager : Singleton<LevelManager>
 
     private void OnEnable()
     {
+        PlayerPrefs.SetInt(PlayerPrefKeys.CurrentDay, 10);
         GameManager.Instance.OnStageFail.AddListener(ReloadLevel);
         OrderManager.OnOrderCompleted.AddListener(()=> PlayerPrefs.SetInt(PlayerPrefKeys.CurrentDay, PlayerPrefs.GetInt(PlayerPrefKeys.CurrentDay,1)+1));
-
-
     }
 
     private void OnDisable()
     {
         GameManager.Instance.OnStageFail.RemoveListener(ReloadLevel);
         OrderManager.OnOrderCompleted.RemoveListener(() => PlayerPrefs.SetInt(PlayerPrefKeys.CurrentDay, PlayerPrefs.GetInt(PlayerPrefKeys.CurrentDay, 1) + 1));
-
     }
     public void ReloadLevel()
     {

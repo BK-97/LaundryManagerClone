@@ -986,6 +986,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6495170294326906283, guid: b47fced5c1b14ac4896bae5cedc59284,
         type: 3}
+      propertyPath: processTime
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6495170294326906283, guid: b47fced5c1b14ac4896bae5cedc59284,
+        type: 3}
       propertyPath: unlockLevel
       value: 10
       objectReference: {fileID: 0}
