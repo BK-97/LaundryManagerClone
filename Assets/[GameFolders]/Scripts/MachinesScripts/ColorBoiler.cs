@@ -117,7 +117,6 @@ public class ColorBoiler : MonoBehaviour, ISelectable,IProcessor
     public void ProcessEnd()
     {
         elapsedTime = 0.0f;
-        _onProcess = false;
         StartCoroutine(WaitForSendingProduct());
         processingProduct.SetInfo(processingProduct.currentProduct.GetComponent<ProductController>().productType, ColorType, addWorth);
         timerSlider.gameObject.SetActive(false);
@@ -133,7 +132,7 @@ public class ColorBoiler : MonoBehaviour, ISelectable,IProcessor
     }
     public void SendProduct()
     {
-        processingProduct.GetComponent<ProductHolder>().currentProduct.GetComponent<IProduct>().MoveNextProcess();
+        processingProduct.GetComponent<ProductHolder>().currentProduct.GetComponent<IProduct>().Sell();
         _hasReadyProduct = false;
 
     }

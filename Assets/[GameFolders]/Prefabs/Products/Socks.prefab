@@ -61,6 +61,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   productType: 0
   colorType: 0
+  _worth: 0
 --- !u!1001 &556675818422470841
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -132,7 +133,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 7d6c24ed02f6dcb4f8bb04cdf1577d5a, type: 2}
+      objectReference: {fileID: 2100000, guid: cc2766c45a69d544f881f37434a2e39d, type: 2}
     - target: {fileID: 919132149155446097, guid: 7cb2f8e17cb114795a5e6a15a4384ec9,
         type: 3}
       propertyPath: m_Name

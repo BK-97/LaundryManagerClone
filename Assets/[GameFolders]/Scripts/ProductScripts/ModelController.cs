@@ -5,13 +5,11 @@ using DG.Tweening;
 public class ModelController : MonoBehaviour
 {
     public MeshRenderer mesh;
-
     private float currentFloat;
     private Transform parentTransform;
-    public void StartColorChange(float processTime,Color newColor,Transform targetTransform)
+    public void StartColorChange(float processTime, Color newColor, Transform targetTransform)
     {
         Material[] materials = mesh.materials;
-
         for (int i = 0; i < materials.Length; i++)
         {
             Material material = materials[i];
@@ -19,8 +17,9 @@ public class ModelController : MonoBehaviour
             Color originalColor = material.GetColor("_BaseColor");
 
             DOTween.To(() => material.GetColor("_BaseColor"), x => material.SetColor("_BaseColor", x), newColor, processTime)
-                .OnUpdate(()=>transform.position= targetTransform.position)
-                .SetEase(Ease.InBack);
+                .OnUpdate(() => transform.position = targetTransform.position)
+                .SetEase(Ease.Linear);
+          
         }
     }
     public void StartUnDissolve(float processTime)
@@ -28,10 +27,10 @@ public class ModelController : MonoBehaviour
         Vector3 newPos = new Vector3(-0.04f, 0.02f, 0.08f);
         parentTransform = GetComponentInParent<ProductHolder>().gameObject.transform;
 
-        parentTransform.transform.DOMove(parentTransform.position+newPos,processTime);
+        parentTransform.transform.DOMove(parentTransform.position + newPos, processTime);
         currentFloat = 0.35f;
-        DOTween.To(() => currentFloat, x => currentFloat = x, 0.25f, processTime).SetEase(Ease.Linear)
-            .OnUpdate(() => mesh.materials[0].SetFloat("_Dissolve", currentFloat));
+       // DOTween.To(() => currentFloat, x => currentFloat = x, 0.25f, processTime).SetEase(Ease.Linear)
+       //     .OnUpdate(() => mesh.materials[0].SetFloat("_Dissolve", currentFloat));
     }
 
 }

@@ -27,10 +27,11 @@ public class ProductController : MonoBehaviour,IProduct
         Transform targetTransform = processor.GetProductPlace();
         Holder.CircleImageScale();
         transform.DOMove(targetTransform.position, 1).SetEase(Ease.Linear).OnComplete(() => MoveProcessEnd(processor));
+        Holder.OutBand();
+
     }
     public void MoveProcessEnd(IProcessor processor)
     {
-        Holder.OutBand();
         Holder.bandController.RemoveHolder(Holder.gameObject);
         processor.GetProduct(Holder);
     }
@@ -49,7 +50,15 @@ public class ProductController : MonoBehaviour,IProduct
     private void ShowToCamera()
     {
         Vector3 movePos = Camera.main.transform.position+new Vector3(0,0, 1);
-        Holder.gameObject.transform.DOMove(movePos,1).OnComplete(()=> OrderManager.Instance.IsOrdered(this));
+        Holder.gameObject.transform.DOMove(movePos,1).OnComplete(()=>StartCoroutine(WaitForGoSell()) );
+        Holder.currentProduct.transform.DOLocalMove(Vector3.zero, 0.5f);
+    }
+    IEnumerator WaitForGoSell()
+    {
+        Holder.priceText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        Holder.priceText.gameObject.SetActive(false);
+        OrderManager.Instance.IsOrdered(this);
     }
     public void BecomeFloadingUI()
     {

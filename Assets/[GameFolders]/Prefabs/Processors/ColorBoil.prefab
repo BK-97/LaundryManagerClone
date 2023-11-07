@@ -78,7 +78,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 4030347242207078291}
   m_HandleRect: {fileID: 0}
@@ -200,10 +200,13 @@ MonoBehaviour:
   addWorth: 50
   unlockLevel: 0
   unlockCost: 0
+  prefIDIndex: 0
   boilColorMesh: {fileID: 6729742750606529530}
   timerSlider: {fileID: 1803158244628026754}
   _isSelected: 0
   _isLocked: 1
+  _hasReadyProduct: 0
+  _onProcess: 0
   LockImage: {fileID: 5610388193757763148}
   lockText: {fileID: 3070043391257122754}
   stars: {fileID: 1366475677423870014}
@@ -310,7 +313,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5063444124273537718}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1975, z: -0.1718}
+  m_LocalPosition: {x: 0, y: 0.1975, z: -0.0964}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

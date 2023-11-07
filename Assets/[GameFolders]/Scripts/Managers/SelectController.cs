@@ -21,8 +21,11 @@ public class SelectController : MonoBehaviour
 
         GameObject selectedObject = GetTappedObject();
         if (selectedObject == null)
+        {
+            ResetSelect();
             return;
-        
+        }
+
         ISelectable selected = GetTappedOnISelectable(selectedObject);
         if (selected == null)
             return;
@@ -62,9 +65,10 @@ public class SelectController : MonoBehaviour
         }
         if (selectedProduct == null)
             return;
-
+        Debug.Log(1);
         selectable.Selected();
         selectedProduct.GetComponentInChildren<IProduct>().MoveProcess(processor);
+        selectedProduct = null;
     }
     private void CalculateSelectedProduct(GameObject selectedObject, ISelectable selectable)
     {

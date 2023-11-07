@@ -70,6 +70,7 @@ public class ProductHolder : MonoBehaviour,ISelectable
             }
         }
         currentProduct.GetComponent<IProduct>().SetInfo(productType, colorType, addWorth);
+        SetPrice();
         currentProduct.SetActive(true);
     }
     public void MovePoint(Vector3 targetPoint)
@@ -88,8 +89,12 @@ public class ProductHolder : MonoBehaviour,ISelectable
         CircleImage.enabled = true;
         if (bandController.isFirstBand)
             return;
-        priceText.text = currentProduct.GetComponent<IProduct>().ProductWorth.ToString() + "$";
+
         priceText.gameObject.SetActive(true);
+    }
+    public void SetPrice()
+    {
+        priceText.text = currentProduct.GetComponent<IProduct>().ProductWorth.ToString() + "$";
     }
     public void OutBand()
     {

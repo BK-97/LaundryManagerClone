@@ -19,6 +19,7 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
     public int prefIDIndex;
     private string cachedID;
 
+    public List<ParticleSystem> fxs;
     [Header("SewMachine Params")]
     public Transform needle;
     public Transform ropeRoll;
@@ -120,6 +121,18 @@ public class SewMachine : MonoBehaviour, ISelectable, IProcessor
         processingProduct.SetInfo(ProductionType, EnumTypes.ColorTypes.None, addWorth);
 
         processingProduct.currentProduct.GetComponent<ModelController>().StartUnDissolve(processTime);
+        StartCoroutine(WaitCO());
+    }
+    IEnumerator WaitCO()
+    {
+        for (int i = 0; i < processTime-2; i++)
+        {
+            int _index = i;
+            if (_index >= fxs.Count)
+                _index = _index - fxs.Count;
+            fxs[_index].Play();
+            yield return new WaitForSeconds(1);
+        }
     }
     public void ProcessUpdate()
     {
